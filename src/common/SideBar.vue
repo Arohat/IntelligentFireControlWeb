@@ -5,29 +5,45 @@
   <el-radio-button :label="false">展开</el-radio-button>
   <el-radio-button :label="true">收起</el-radio-button>
 </el-radio-group>
-<el-menu default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse"
-background-color="#1a2942"
+<el-menu
+        router :default-active="$route.path"
+        default-active="1-4-1"
+        class="el-menu-vertical-demo"
+        @open="handleOpen"
+        @close="handleClose"
+        :collapse="isCollapse"
+        background-color="#1a2942"
       text-color="#b8c7ce"
       active-text-color="#fff">
   <el-submenu index="1">
     <template slot="title">
       <i class="el-icon-menu"></i>
-      <span slot="title">导航一</span>
+      <span slot="title">
+          基础管理
+      </span>
     </template>
-    <el-menu-item index="1-1">
+    <el-menu-item index="/manage">
       <template slot="title">
         <i class="el-icon-menu"></i>
-        <span slot="title">导航一1</span>
+        <span slot="title">
+            用户管理
+        </span>
       </template>
     </el-menu-item>
-    <el-menu-item index="1-2">
+    <el-menu-item index="/department">
       <template slot="title">
         <i class="el-icon-menu"></i>
-        <span slot="title">导航一2</span>
+        <span slot="title">部门管理</span>
+      </template>
+    </el-menu-item>
+    <el-menu-item index="/informationAdded">
+      <template slot="title">
+        <i class="el-icon-menu"></i>
+        <span slot="title">电梯维保合同管理</span>
       </template>
     </el-menu-item>
   </el-submenu>
-  <el-submenu index="2">
+  <el-submenu index="">
     <template slot="title">
       <i class="el-icon-menu"></i>
       <span slot="title">导航一</span>
@@ -42,7 +58,7 @@ background-color="#1a2942"
       <el-menu-item index="2-4-3">选项3</el-menu-item>
     </el-submenu>
   </el-submenu>
-  <el-menu-item index="3">
+  <el-menu-item index="">
     <i class="el-icon-document"></i>
     <span slot="title">导航三</span>
   </el-menu-item>
