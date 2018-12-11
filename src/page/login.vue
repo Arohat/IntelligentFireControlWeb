@@ -58,17 +58,16 @@
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            this.$http2
-        .post("/sys/login", {
+            this.$http2.post("/sys/login", {
             "userName": this.ruleForm.name,
             "password": md5(this.ruleForm.password),
             "identifyCode": this.ruleForm.code,
-        })
-        .then(data => {
-          console.log("成功");
-        }).catch(()=>{
-          console.log("失败");
-        });
+            })
+            .then(data => {
+              console.log("成功");
+            }).catch(()=>{
+              console.log("失败");
+            });
 
           } else {
             console.log('error submit!!');
