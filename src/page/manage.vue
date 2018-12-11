@@ -6,12 +6,12 @@
     <div class="layout-container">
       <div class="layout-left">
         <SideBar></SideBar>
-      </div> 
+      </div>
       <div class="layout-right">
         <Container>
           <router-view></router-view>
         </Container>
-      </div> 
+      </div>
     </div>
   </div>
 </template>
@@ -46,10 +46,12 @@ export default {
     flex: 1;
     display: flex;
     .layout-left {
+      background-color: #1a2942;
     }
     .layout-right {
       flex: 1;
       overflow-y: auto;
+      background-color: #ecf0f5;
     }
   }
 }

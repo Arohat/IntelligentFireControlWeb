@@ -21,8 +21,20 @@ export default {
     };
   },
   methods: {
-    
+
   },
   mounted() {}
 };
 </script>
+<style lang="less">
+  .el-menu--horizontal>.el-submenu .el-submenu__title {
+    height: 50px;
+    line-height: 50px;
+    border-bottom: 2px solid transparent;
+    color: #909399;
+  }
+  .el-menu.el-menu--horizontal {
+    background-color: #343744;
+    border: 0;
+  }
+</style>
