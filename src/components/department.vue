@@ -14,11 +14,11 @@
             </div>
         </div>
     </div>
+    <!--<el-button type="text" @click="open2">点击打开 Message Box</el-button>-->
 </template>
 
 <script>
     let id = 1000;
-
     export default {
         data() {
             const data = [{
@@ -58,12 +58,42 @@
             }];
             return {
                 data4: JSON.parse(JSON.stringify(data)),
-                data5: JSON.parse(JSON.stringify(data))
+                data5: JSON.parse(JSON.stringify(data)),
+                departmentName:'dddd'
             }
         },
 
         methods: {
             append(data) {
+                const h = this.$createElement;
+                this.$msgbox({
+                    title: '部门',
+                    message: h('p', null, [
+                        h('el-input', { style: 'color: teal' }, 'VNode')
+                    ]),
+                    showCancelButton: true,
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    beforeClose: (action, instance, done) => {
+                        if (action === 'confirm') {
+                            instance.confirmButtonLoading = true;
+                            instance.confirmButtonText = '执行中...';
+                            setTimeout(() => {
+                                done();
+                                setTimeout(() => {
+                                    instance.confirmButtonLoading = false;
+                                }, 300);
+                            }, 3000);
+                        } else {
+                            done();
+                        }
+                    }
+                }).then(action => {
+                    this.$message({
+                        type: 'info',
+                        message: 'action: ' + action
+                    });
+                });
                 const newChild = { id: id++, label: '人力资源部', children: [] };
                 if (!data.children) {
                     this.$set(data, 'children', []);
@@ -72,10 +102,25 @@
             },
 
             remove(node, data) {
-                const parent = node.parent;
-                const children = parent.data.children || parent.data;
-                const index = children.findIndex(d => d.id === data.id);
-                children.splice(index, 1);
+                this.$confirm('此操作将删除该部门, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    const parent = node.parent;
+                    const children = parent.data.children || parent.data;
+                    const index = children.findIndex(d => d.id === data.id);
+                    children.splice(index, 1);
+                    this.$message({
+                        type: 'success',
+                        message: '删除成功!'
+                    });
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: '已取消删除'
+                    });
+                });
             },
 
             renderContent(h, { node, data, store }) {
