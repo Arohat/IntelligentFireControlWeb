@@ -21,7 +21,7 @@
               </el-input>
             </div>
             <div style="float: right; width: 30%;height: 50px;">
-              <img width="100%" :src="codeUrl" height="40" />
+              <img width="100%" @click="getImg" :src="codeUrl" height="40" />
             </div>
           </el-form-item>
           <el-form-item>
