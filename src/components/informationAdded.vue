@@ -54,6 +54,7 @@
             <el-upload
                     class="upload-demo"
                     ref="upload"
+                    action="https://jsonplaceholder.typicode.com/posts/"
                     :on-remove="handleRemove"
                     :file-list="form.fileList"
                     :multiple="false"
