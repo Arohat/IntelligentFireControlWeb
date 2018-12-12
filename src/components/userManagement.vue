@@ -270,8 +270,16 @@
 </script>
 
 <style lang='less'>
+  .demo-form-inline{
+    .el-form-item__label {
+      font-size: 12px;
+    }
+  }
   .container-table{
     background: #fff;
+    .el-table{
+      font-size: 12px;
+    }
   }
   .demo-form-inline{
     background: #fff;
@@ -280,5 +288,8 @@
   }
   .el-pagination{
     text-align: right;
+    .el-pagination__total{
+      float: left;
+    }
   }
 </style>

@@ -21,7 +21,7 @@
                         </el-input>
                     </div>
                     <div style="float: right; width: 30%;height: 50px;">
-                        <img width="100%"  height="50" />
+                        <img width="100%" :src="codeUrl" height="50" />
                     </div>
                 </el-form-item>
                 <el-form-item>
@@ -33,6 +33,7 @@
 </template>
 <script>
     import md5 from 'js-md5';
+    import api from '@/api/api'
   export default {
     data() {
       return {
@@ -51,14 +52,15 @@
           code: [
             { required: true, message: '请输入验证码', trigger: 'blur' }
           ]
-        }
+        },
+        codeUrl:''
       };
     },
     methods: {
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            this.$http2.post("/sys/login", {
+            this.$http2.post(api.login, {
             "userName": this.ruleForm.name,
             "password": md5(this.ruleForm.password),
             "identifyCode": this.ruleForm.code,
@@ -74,7 +76,19 @@
             return false;
           }
         });
+      },
+      getImg(){
+        this.$http2.get(api.getImage, {})
+          .then(data => {
+            this.testCode=data.data.verifyCode
+            this.codeUrl = 'data:image/jpg;base64,'+data.data.image
+          }).catch(()=>{
+          console.log("失败");
+        });
       }
+    },
+    created(){
+      this.getImg()
     }
   }
 </script>

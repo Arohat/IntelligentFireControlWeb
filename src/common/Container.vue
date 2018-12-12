@@ -10,8 +10,9 @@ export default {
 }
 </script>
 
-<style>
-.container{
-  padding: 15px;
-}
+<style lang="less">
+  @import '../assets/css/common.less';
+  .container{
+    padding: 15px;
+  }
 </style>

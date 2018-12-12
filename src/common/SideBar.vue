@@ -1,3 +1,4 @@
+<script src="../main.js"></script>
 <template>
   <div>
       <!-- 一级菜单列表 -->
@@ -22,7 +23,7 @@
           基础管理
       </span>
     </template>
-    <el-menu-item index="/manage">
+    <el-menu-item index="/userManagement">
       <template slot="title">
         <i class="el-icon-menu"></i>
         <span slot="title">
