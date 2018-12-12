@@ -1,11 +1,9 @@
 <script src="../main.js"></script>
 <template>
   <div>
-      <!-- 一级菜单列表 -->
-      <el-radio-group v-model="isCollapse">
-  <el-radio-button :label="false">展开</el-radio-button>
-  <el-radio-button :label="true">收起</el-radio-button>
-</el-radio-group>
+    <div class="menu-icon">
+      <img @click="getMenu" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAO0lEQVQ4T2NkoBAwUqifAW7AjuPn/pNimIelEVgv9QwgxXZktdQLA4pdMBqI5AYhNRMSxbFAricoTokALwYYETYb1DUAAAAASUVORK5CYII="/>
+    </div>
 <el-menu
         router :default-active="$route.path"
         default-active="1-4-1"
@@ -69,7 +67,7 @@
 </template>
 
 <script>
-export default {
+  export default {
     data() {
       return {
         isCollapse: false
@@ -81,12 +79,21 @@ export default {
       },
       handleClose(key, keyPath) {
         console.log(key, keyPath);
+      },
+      getMenu(){
+        this.isCollapse=!this.isCollapse
       }
     }
   }
 </script>
 
 <style lang='less'>
+  .menu-icon{
+    height: 37px;
+    line-height: 37px;
+    text-align: center;
+    background: #162338;
+  }
 .el-menu-vertical-demo:not(.el-menu--collapse) {
     width: 200px;
     min-height: 400px;
