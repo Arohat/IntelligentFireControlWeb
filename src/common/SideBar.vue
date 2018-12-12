@@ -1,8 +1,8 @@
 <script src="../main.js"></script>
 <template>
   <div>
-    <div class="menu-icon">
-      <img @click="getMenu" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAO0lEQVQ4T2NkoBAwUqifAW7AjuPn/pNimIelEVgv9QwgxXZktdQLA4pdMBqI5AYhNRMSxbFAricoTokALwYYETYb1DUAAAAASUVORK5CYII="/>
+    <div @click="getMenu" class="menu-icon">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAO0lEQVQ4T2NkoBAwUqifAW7AjuPn/pNimIelEVgv9QwgxXZktdQLA4pdMBqI5AYhNRMSxbFAricoTokALwYYETYb1DUAAAAASUVORK5CYII="/>
     </div>
 <el-menu
         router :default-active="$route.path"
@@ -93,6 +93,7 @@
     line-height: 37px;
     text-align: center;
     background: #162338;
+    cursor: pointer;
   }
 .el-menu-vertical-demo:not(.el-menu--collapse) {
     width: 200px;

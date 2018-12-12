@@ -6,22 +6,22 @@
         <el-form :model="ruleForm" :rules="rules" ref="ruleForm" class="ruleForm">
           <el-form-item prop="name">
             <el-input v-model="ruleForm.name" placeholder="账户">
-              <i slot="prefix"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAC8klEQVRYR8WWS2jUUBSG/5NURouLLhQVwReiiKiIL0RQ8YEv0KVvVBRmp9Jp7x1n1Y2Qm7TjohRECorgg+50UUF84K5qEVQQfGARURRREO1icJJfAi7q2Jl7I4Vme/7znS/3JCGCcb5knOfjvwQ6OzunJElyGMC6PzfwREQG2tvb72W9oUwCPT09k4eHh7sBHAQwYZRh/dVq9WipVPriKuIsUC6XJ1Wr1fsA1jSCk/zc1NS0qlAovHeRcBYwxlwTkX0uUJKDWutVLlkngSiKNpG86wIckdmllOq39TgJhGF4EcBRG6ymfkkpdczW4yowYNt97SCSA1rrtWMiYIx5JiJLbLCRdZLPtdZLbT1OJ2CMuSEiu22wmvodpdRWW4+rwHER6bXBaupnlFKBrcdJ4M834C2A6TZgWif5NY7jhaVS6ast7ySQQsIw3AAgfRV9CzQGsFkp9cA2PK07CZTL5ZmVSiXned5sAFdEZEYdeJwkySGSj3K5XKW1tfWDTaKhgDFmJYBeEVlGsgrgbBzH3b7vnxKRNSSXicg0AN9IXgZwXkQOkCyJSBPJpwBOaK0H64nUFQiCYL3nebcB5Gper0ER6SZ5R2v9Ma0FQTDL87yNJE+LyPKaYRUA2+qtZFSBvr4+f2ho6JWIzLMc4WuSE0RkjiX3ieQCrfWP2tyoAmEY7gdw1ba/jPVWpdQ5JwFjTL+I7Mg4wBZ/rJRabRXo6OjwmpubfwKYZCNmqZNMWlpaJubz+V8j+/5ZgTFmkYi8yALPkF2hlHrSUCAMw+0AbmWAOkdJ7tFa37SdwBERueRMzRY8ppT6i/3PCqIoypM8n43rnM4rpS7YVrAXwHVnZIZgkiR7i8ViX0OBrq6uBXEcv8zAdY76vr+wUCi8aiiQFsMwTB/C9GEcs4vkLa31Tut3IA1EUTQ3SZKHIjJ1LAxIvvF9f0tbW9s7J4E0FATBYs/zTgKY7/APUM+zQvI2yd5isfh9tJDT/8BYnEI9xrgL/AbPqBgwNJoGegAAAABJRU5ErkJggg==" /></i>
+              <i slot="prefix"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAB8klEQVRIS83VsYsTQRQG8O+bwcSFa5TgFVoosbIQLcSQhU1m5SxiHxAELSyU8084S7G0EAULEbSR9KYQdyarkgMREbWwELERRIigoiZF9smCBzndZC97BNxy9r3vxzxmdokFP1xwPv4PIIqivUqpOwCOANgpIq9JrhpjXuZNIHcHcRwfGI/H6ySXJ8NE5KfWeqXRaPRnIbmAtfYpSX9KyIdyuXyoXq//mobMBOI4PpokyYucMZw2xtwvBDjnzgC4lwNcMcasFQVqANZnASJyNgzDu4WAbrdb9jzvLYD9WQEi8oPkQWPMp0JA2uScawJ4CGBHRsh5Y8ztuU9Rp9PRlUplFUADQKS1fpIkyTUAh9N7AOCNiFwGsETyHIDnnuddr9Vq3/7GMk+RtfYmyYsbxSLSEZFbg8Egbrfb416vdyxJkjT4Akn1py5qNpsrJGUS+Qew1p4g+Sjvhk55f8kYcyMPeECyVQQQkfdhGFZnAs65LwB2FQHSnlKptOz7/ueN/k0j6vf7u0ej0aBoeNqnlPInv0+bgCiKqkqpd9sBRORUGIbdzB0455YAfN8OoLU+HgTBs0wgXbTWxiSDIoiIfBwOh9VWqzWaCjjn9gG4KiInSe7ZCiQiX0k+1lqvBUHwauYp2krgPDW5P5x5wrJqFw78Bh1tpxkkBcYJAAAAAElFTkSuQmCC" /></i>
             </el-input>
           </el-form-item>
           <el-form-item prop="password">
             <el-input v-model="ruleForm.password" placeholder="密码">
-              <i slot="prefix"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACh0lEQVRYR8WXv4sTURDHZ+5yd7nnTxAEBW0srtDGysI/wu5ELQ60sZQIM5Xy0Ca7CxHSxeqKw+IU/wrrKxSxsYggqIVC1Msllx9f2WDC3prdt5usZMrkzcxnv2/e9+0yLTh4wf0pM4C1tmyM2SSi60R0mYg2AKwQ0Tsi+sDMb0ql0stKpXKQ56EyAQRBcAPAcyI6m1YcwHciuq+qr7JCOAGCILgNYIcos1ogorsisp0FIhUgCIIrAPaIKJR6FADeA3g4HA73yuXyoNfrXWXme0R0K7Kmz8zXRCTMTY1UAM/ztpl5K1Jhp91ub1lrh/Gqnuc9Y+YHkd9fiMideQE+MfPFSJFzIvJ1WlHf9y8R0ceICl9U9fxcAL7vd4ho7a/0Q1VdTiq4u7u73Gw2+xGA1PXjda4t6DFzKQtAo9FYabVah0UDDJh5KQuAtXbVGNONKDQQkRF8WqQq4Pt+eKTG058qab1eX+t0OuGWjdf3VXVyepIgEgEAcBAEk2kHkApQq9XW+/1+uzCAvENlrTXGmP3Ik/ZEZDXXFlSr1U1mfsLMG67EnP+/BfB0mkUf2QLf97+5/D5n4+jyHyJyJp4fB5ic+zkaTU0FMHUojwB4ntdlZue+zQg3dSbiCoRG4jw6swAAOFTVkatGI67AxPlmaeLI6YpI2TUDoZcn+v08UAA6qrruUmBivfM0S8g9EBHjUiB0Pudb0ixwANqqeswFMPH+WZo4cvZF5PjCAAD8VtUTiQDxy6doBQD8UtWTiQDW2iVjzKDoxpF6P0XkVCJA/PYrGgRAS1VPu2YgvM//OatFwAD4rKoXXAA3ATxi5vDTq7AIvyWI6LGqvk4FKKxjjkL/xXRy9Kc/kFg8MJ//o2kAAAAASUVORK5CYII=" /></i>
+              <i slot="prefix"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABvElEQVRIS72Vv4sUQRCFv1rZnePA4IRFMDERzAxEDNYFpxoUhRNMDQwEQwPBRNREBC8R/RNMLpA1FASR6xrZ5II1NVQQIzlQ2UBxYUpGHFj3t6Njp029r6vrvW6h5iWr6g8Gg/XhcHgFaLv791artd3tdt8vq18JYGZXgfuFeClYQETkUZIkdzudztd5oKUAM3sA3HD3XESeAk+Aw8A14Aiwm6bpKRHJZ0EWAmKMR4E3wKjRaJxJ07RfipjZmru/EpGTwGVV3f5jgJndA+64+1YI4dakgJl1gQL6QlXPVQE8Azbd/UQI4fWkgLs3siz7Buyp6qEqAAPSYriqujdLwMwKJ+1X1Y0qgAjoIkCM8YOIrKvqgZUB/X5/YzQaHQMeishxd78oIl/mWLFw1hpwodlsvp3MxpSLsiy7lOf5YxFJloVoxr7/MsTtcm8KYGbPgfMVxH+WuPvHEMLBuYAY446IhKoA4PP4wKc6qB1gZqVzqjaxuIP/ASjDVVsH9QJijJmInK56/FVcVC/gHwz50/i7NCvJW8DNv7iil6p6dm6Se73evna7fb14gitA3iVJ0hv/o5f+yRUgv5X8AMxZuRmch6HEAAAAAElFTkSuQmCC" /></i>
             </el-input>
           </el-form-item>
           <el-form-item prop="code">
             <div style="float: left; width:70%;">
               <el-input v-model="ruleForm.code" placeholder="验证码">
-                <i slot="prefix"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACGElEQVRYR+2WP4jUQBjF38vtChH/wKGiKLJorVZWFmp1qJWFq4XiNQpyYLGQScAmBxYzs5BGEQ4ERRA8rBUr/zQWViKWtmKjB2o75pNIAuFMdrN7e6zCTpvve+83j28yQ0x5ccr++DcBjDHbAdwE0J5EQiRdmqZ3oij6vl6vMgFr7SKAB5MwL2lcU0rdbwpwHcDKJAFEZCkMw3ubAfBmAOgRAPPZ900DUErVDrIx5jnJMzOAWQKzBGYJ/JcJXATwpMldMOhPaK19B+B4rnNVKfWo0V2gtT7med77jQDEcbzF9/1vJLflOqeUUn/dG7X/cWvtFwB7h0HUJWCtXQJwN+9f63Q6e7rd7q9GCWRFxphbJG+PA6C1PkjyA8mdWT/JOAiC5Sqt2gTiON7q+/4nkvsGQaxPIEmSeefcKwBH876vInIoDMOfIwFkxVrrBc/zngGYq4MoAxhjDpB8DeBwfvRSkueUUi/q+oc+SrXWl0g+JulViRQA1tqTIvKU5O68TgAsVk1+WWcoQFbc7/fPi8hq1SPVOber1Woti8iNAlJEHMnLSqmsZ+BqBJAP5WkAq6UdFsI/AOwouayRvBAEwcth5n8GtElRUZMkyX7nXLarE1V9IvK23W53e73e56a6IwEUotbasyKiSWaPzmx9TNM0iqIoG9iR1lgAhYMx5grJOaXUw5FcS8UbAhjXdORTMAmjOo2pJ/Abw9wcMKGhxsIAAAAASUVORK5CYII=" /></i>
+                <i slot="prefix"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABkklEQVRIS+2VvUsDQRDF3zMJCHZ22gg2FlYqVpJwc42IlYgBwdLWRlD8KiwUiWBhq51WQhobIRY7gaSMaKGthdjdH6BwysrBBTS55C5Ru1y5s+/9mNmZG+KfP/6zP5oAxpgxkkPdgK21nuu6T9+1UYAqyZluAABqIjIdB7gjOdkl4EFEJn4FEJGorAskNwH0AECvRDDGtG3TvyhRjeRUqzloATgmuQHgXkR+zFBTT6vqDYC5TgCqeglgxVp767rubNygbZIsJAWUSqWBTCbzQnKQ5I7jOEdtAdVqddj3/Veg+UcYCBtLpKrnAFYBvKVSqZFcLue1BQRBY8wJyfWoLL4DVHUXwEF471BE9ho1kfvAWttXLpeLABYaBQEgzPIMwHwYv/Y8bzGfz38mAgSXVDVtrb0gudwg2gewBaA/PL8KHlhEPqIybrvRrLVU1bXw0euGdZ93ANuO45yStK2aItHKrFQqo77vH5FcCo2K6XR6K5vNPsftjUSAuokxZpwkReQxzrge7wiQ1DS2TbsxaqX5AhyfuRkjVK2QAAAAAElFTkSuQmCC" /></i>
               </el-input>
             </div>
             <div style="float: right; width: 30%;height: 50px;">
-              <img width="100%" :src="codeUrl" height="50" />
+              <img width="100%" :src="codeUrl" height="40" />
             </div>
           </el-form-item>
           <el-form-item>
@@ -130,8 +130,8 @@
         height: 55px;
     }
     .login-panel {
-        width: 438px;
-        height: 424px;
+        width: 350px;
+        height: 350px;
         overflow: hidden;
         background-color: #fff;
         margin: 0;
@@ -146,18 +146,15 @@
         }
         .el-button--primary{
             width: 100%;
-            height: 50px;
+            height: 40px;
             border-radius: 0;
         }
 
         .el-input__inner {
-            padding-left: 50px;
-            height: 50px;
-            line-height: 50px;
             border-radius: 0;
         }
         .el-input__prefix {
-            top: 11px;
+            top: 7px;
         }
     }
 }
