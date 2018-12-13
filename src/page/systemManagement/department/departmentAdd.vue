@@ -1,5 +1,5 @@
 <template>
-	<el-form class="container-form" ref="form" :model="form" label-width="80px">
+	<el-form class="container-form" label-width="80px">
 		<el-form-item label="所属机构">
 			<el-select v-model="organizationId" placeholder="请选择">
 				<el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
@@ -20,6 +20,8 @@
 </template>
 
 <script>
+	import api from '@/api/api';
+	import http from '@/http'
 	export default {
 		data() {
 			return {
@@ -33,8 +35,21 @@
 					value: '选项2',
 					label: '研发部'
 				}],
-				
+
 			}
+		},
+		created: function() {
+			this.$http2.post(api.department+'/add', {
+					/*            "userName": this.ruleForm.name,
+					            "password": md5(this.ruleForm.password),
+					            "identifyCode": this.ruleForm.code,*/
+				})
+				.then(data => {
+					//this.$router.push({ path: '/index'})
+					console.log("成功");
+				}).catch(() => {
+					console.log("失败");
+				});
 		}
 	}
 </script>
