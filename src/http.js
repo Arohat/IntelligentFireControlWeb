@@ -1,7 +1,7 @@
 import axios from 'axios'
 import qs from 'qs'
 import {Message, Loading} from 'element-ui'
-const baseURL ='http://47.99.100.79:8080';
+const baseURL ='http://127.0.0.1:8081/ifc';
 const http = axios.create({
   baseURL
 })

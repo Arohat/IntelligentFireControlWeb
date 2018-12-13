@@ -33,7 +33,8 @@
 </template>
 <script>
     import md5 from 'js-md5';
-    import api from '@/api/api'
+    import api from '@/api/api';
+		import http from '@/http'
   export default {
     data() {
       return {
@@ -83,6 +84,7 @@
             "identifyCode": this.ruleForm.code,
             })
             .then(data => {
+							this.$router.push({ path: '/manage'})
               console.log("成功");
             }).catch(()=>{
               console.log("失败");
@@ -95,13 +97,7 @@
         });
       },
       getImg(){
-        this.$http2.get(api.getImage, {})
-          .then(data => {
-            this.testCode=data.data.verifyCode
-            this.codeUrl = 'data:image/jpg;base64,'+data.data.image
-          }).catch(()=>{
-          console.log("失败");
-        });
+				this.codeUrl = http.defaults.baseURL + '/sys/getImage?d='+Math.random();
       }
     },
     created(){
