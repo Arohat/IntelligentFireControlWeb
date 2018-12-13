@@ -52,7 +52,7 @@
       <img
         src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABPElEQVQ4T6WSv0uVYRiGr4sGR5cElWpxkQOiiINrW3tb4L+gRuKPwcHdwUncFVwigigMaWtwEcTFIRAcHCtoMoLueOWcw3cOn9850Ds+7/1ez/0+9yP/eWx6n+RCnWvSDAJEbdR0L5OMA6fArPq3dE3SBSSZAo6A5+pdx1UV8Am4VDc7l32Aov0AfFNf9wCSzAMfgWfqnzpA21FxeQ08UX+U2r2DJFtAS12qDizJqrrXVzsDdtW3VcBugalvBqWa5D1woh5UARvt4b0aAnAFbPc7mAG+AE/V3w9BkiwAX4EJ9WfXQXsO5U+36kodIMkocA68U9frYnxcYgQ+A2vq90oaL4AdYARYrN2DtotJYB8oD0q3EukYMA0cAsvqr6rD2jVN0gJeAo+AsnXH6k3d1xr3fFAiPUMcRlyn+QdQQn4RIFpe+QAAAABJRU5ErkJggg=="/>
       <el-badge class="item" type="primary">
-        <el-button size="small">修改密码</el-button>
+        <el-button size="small">退出系统</el-button>
       </el-badge>
       </span>
     </div>

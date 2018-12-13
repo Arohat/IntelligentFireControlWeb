@@ -35,6 +35,12 @@
         <span slot="title">部门管理</span>
       </template>
     </el-menu-item>
+    <el-menu-item index="/departmentAdd">
+      <template slot="title">
+        <i class="el-icon-menu"></i>
+        <span slot="title">部门添加</span>
+      </template>
+    </el-menu-item>
     <el-menu-item index="/informationAdded">
       <template slot="title">
         <i class="el-icon-menu"></i>
