@@ -9,7 +9,6 @@
       </div>
       <div class="layout-right">
         <Container>
-          <router-view></router-view>
         </Container>
       </div>
     </div>
