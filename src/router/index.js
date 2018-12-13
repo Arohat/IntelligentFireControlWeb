@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import manage from '@/page/manage'
+import manage from '@/page/index'
 import HelloWorld from '@/components/HelloWorld'
 
 Vue.use(Router)
@@ -31,16 +31,16 @@ export default new Router({
         component: userManagement,
         meta: [],
       }, {
-        path: '/userManagement',
+        path: '/systemManagement/userManagement/userManagement',
         component: userManagement,
         meta: [{title: '用户管理', path: '/userManagement'}, {title: '用户管理', path: '/userManagement'}],
       }, {
-          path: '/informationAdded',
+          path: '/systemManagement/userManagement/userRoleManagement',
           component: informationAdded,
           meta: [{title: '用户管理', path: '/informationAdded'}, {title: '用户管理', path: '/informationAdded'}],
       },
           {
-              path: '/department',
+              path: '/systemManagement/userManagement/departmentManagement',
               component: department,
               meta: [{title: '用户管理', path: '/department'}, {title: '用户管理', path: '/department'}],
           },
