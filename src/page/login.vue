@@ -84,7 +84,7 @@
             "identifyCode": this.ruleForm.code,
             })
             .then(data => {
-							this.$router.push({ path: '/manage'})
+							this.$router.push({ path: '/index'})
               console.log("成功");
             }).catch(()=>{
               console.log("失败");

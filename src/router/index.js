@@ -21,8 +21,8 @@ export default new Router({
       }
     },
     {
-      path: '/manage',
-      name: '',
+      path: '/index',
+      name: '首页',
       component: manage,
       meta:{
         requireAuth:true,
@@ -51,6 +51,34 @@ export default new Router({
           }
       ]
     },
+		{
+		      path: '/basicManagement',
+		      name: '基础管理',
+		      component: manage,
+		      meta:{
+		        requireAuth:true,
+		      },
+		      children: [{
+		        path: '',
+		        component: userManagement,
+		        meta: [],
+		      }, {
+		        path: '/userManagement',
+		        component: userManagement,
+		        meta: [{title: '用户管理', path: '/userManagement'}, {title: '用户管理', path: '/userManagement'}],
+		      }, {
+		          path: '/informationAdded',
+		          component: informationAdded,
+		          meta: [{title: '用户管理', path: '/informationAdded'}, {title: '用户管理', path: '/informationAdded'}],
+		      },
+		          {
+		              path: '/department',
+		              component: department,
+		              meta: [{title: '用户管理', path: '/department'}, {title: '用户管理', path: '/department'}],
+		          },
+		
+		      ]
+		    },
     {
       path: '/HelloWorld',
       name: 'HelloWorld',
