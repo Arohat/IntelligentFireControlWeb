@@ -9,7 +9,7 @@ const login = r => require.ensure([], () => r(require('@/page/login')), 'login')
 const userManagement = r => require.ensure([], () => r(require('@/components/userManagement')), 'userManagement');
 const informationAdded = r => require.ensure([], () => r(require('@/components/informationAdded')), 'informationAdded');
 const department = r => require.ensure([], () => r(require('@/components/department')), 'department');
-const departmentAdd = r => require.ensure([], () => r(require('@/department/departmentAdd')), 'departmentAdd');
+//const departmentAdd = r => require.ensure([], () => r(require('@/department/departmentAdd')), 'departmentAdd');
 
 export default new Router({
   routes: [
@@ -44,11 +44,11 @@ export default new Router({
               path: '/department',
               component: department,
               meta: [{title: '用户管理', path: '/department'}, {title: '用户管理', path: '/department'}],
-          }, {
+          },/* {
               path: '/departmentAdd',
               component: departmentAdd,
               meta: [{title: '部门添加', path: '/departmentAdd'}, {title: '部门添加', path: '/departmentAdd'}],
-          }
+          }*/
       ]
     },
 		{
