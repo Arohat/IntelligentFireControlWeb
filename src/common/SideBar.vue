@@ -8,8 +8,8 @@
                 router :default-active="$route.path"
                 @open="handleOpen"
                 @close="handleClose"
-                background-color="#1a2942"
-                text-color="#b8c7ce"
+                background-color="#343744"
+                text-color="#fff"
                 active-text-color="#fff"
                 class="menu-Bar"
                 :collapse="isCollapse"
@@ -39,7 +39,13 @@
             this.$http2.get(api.findMenuByUser+'?userId=1', {
             })
                 .then(data => {
-                    this.menuData=data.data.list
+                    let menuData= [];
+                    data.data.list.map((item)=>{
+                        if(item.children.length!==0){
+                            menuData.push(item)
+                        }
+                    });
+                    this.menuData = menuData;
                 }).catch(() => {
                 console.log("失败");
             });
@@ -63,7 +69,7 @@
         height: 37px;
         line-height: 37px;
         text-align: center;
-        background: #162338;
+        background: #343744;
         cursor: pointer;
     }
 
