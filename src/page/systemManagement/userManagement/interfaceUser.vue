@@ -46,7 +46,7 @@ export default {
     flex: 1;
     display: flex;
     .layout-left {
-      background-color: #343744;
+      background-color: #1a2942;
     }
     .layout-right {
       flex: 1;

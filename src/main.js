@@ -7,7 +7,7 @@ import ElementUI from 'element-ui'
 import axios from './http'
 import http_noLoading from './http_noLoading'
 import qs from 'qs'
-import 'element-ui/lib/theme-chalk/index.css';
+import 'element-ui/lib/theme-chalk/index.css'
 Vue.use(ElementUI);
 Vue.prototype.$http = axios;
 Vue.prototype.$http2 = http_noLoading;
