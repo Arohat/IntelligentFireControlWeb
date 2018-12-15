@@ -61,7 +61,6 @@
             class="el-menu-header"
             mode="horizontal"
             router :default-active="$route.path"
-            @select="handleSelect"
             background-color="rgb(52, 55, 68)"
             text-color="#fff"
             active-text-color="#ffd04b"
@@ -70,6 +69,7 @@
               v-for="value in this.menuData"
               :key="value.id"
               :index="value.navigateUrl"
+              @click="handleSelect(value)"
       >
         {{value.name}}
       </el-menu-item>
@@ -85,7 +85,9 @@
 <script>
     import api from '@/api/api';
     import http from '@/http'
-  export default {
+    import Bus from './Bus.js'
+
+    export default {
     data() {
       return {
           userInfo: null,
@@ -96,23 +98,18 @@
       };
     },
       mounted: function () {
-          this.$http2.get(api.findMenuByUser+'?userId=1', {
+          this.$http2.get(api.findMenuByUserAndParentId+'?userId=1', {
           })
               .then(data => {
-                  let menuData= [];
-                  data.data.list.map((item)=>{
-                      if(item.children.length==0){
-                          menuData.push(item)
-                      }
-                  });
-                  this.menuData = menuData;
+                  this.menuData = data.data;
               }).catch(() => {
               console.log("失败");
           });
       },
     methods: {
-        handleSelect(key, keyPath) {
-            console.log(key, keyPath);
+        handleSelect(item) {
+            Bus.$emit('on', item);
+//            console.log(key, keyPath);
         }
     },
   };

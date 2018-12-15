@@ -19,12 +19,11 @@
         <!-- 一级菜单列表 END -->
     </div>
 </template>
-
 <script>
     import api from '@/api/api';
     import http from '@/http'
     import MenuTree from './MenuTree'
-
+    import Bus from './Bus.js'
     export default {
         data() {
             return {
@@ -36,19 +35,17 @@
             'MenuTree': MenuTree
         },
         mounted: function () {
-            this.$http2.get(api.findMenuByUser+'?userId=1', {
+            this.$http2.get(api.findTwoAndThreeUserMenuTree+'?userId=1&&parentId=9', {
             })
                 .then(data => {
-                    let menuData= [];
-                    data.data.list.map((item)=>{
-                        if(item.children.length!==0){
-                            menuData.push(item)
-                        }
-                    });
-                    this.menuData = menuData;
+                    this.menuData = data.data.list;
                 }).catch(() => {
                 console.log("失败");
             });
+            Bus.$on('on', (msg) => {
+                this.message = msg
+                 console.log(msg)
+            })
         },
         methods: {
             handleOpen(key, keyPath) {
@@ -63,7 +60,6 @@
         }
     }
 </script>
-
 <style lang='less'>
     .menu-icon {
         height: 37px;
