@@ -23,7 +23,7 @@
     import api from '@/api/api';
     import http from '@/http'
     import MenuTree from './MenuTree'
-    import Bus from './Bus.js'
+    import Bus from '../Bus.js'
     export default {
         data() {
             return {
