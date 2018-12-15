@@ -108,8 +108,9 @@
       },
     methods: {
         handleSelect(item) {
-            Bus.$emit('on', item);
-//            console.log(key, keyPath);
+            if(item.navigateUrl==''){
+                Bus.$emit('on', item);
+            }
         }
     },
   };

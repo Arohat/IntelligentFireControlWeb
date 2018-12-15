@@ -28,7 +28,8 @@
         data() {
             return {
                 isCollapse: false,
-                menuData: []
+                menuData: [],
+                menuId:''
             };
         },
         components: {
@@ -40,14 +41,23 @@
                 .then(data => {
                     this.menuData = data.data.list;
                 }).catch(() => {
-                console.log("失败");
+                this.$message('获取左侧菜单失败');
             });
             Bus.$on('on', (msg) => {
-                this.message = msg
-                 console.log(msg)
+                this.menuId = msg.id
+                this.refresh(this.menuId)
             })
         },
         methods: {
+            refresh (parentId){
+                this.$http2.get(api.findTwoAndThreeUserMenuTree+'?userId=1&&parentId='+parentId, {
+                })
+                    .then(data => {
+                        this.menuData = data.data.list;
+                    }).catch(() => {
+                    this.$message('获取左侧菜单失败');
+                });
+            },
             handleOpen(key, keyPath) {
                 console.log(key, keyPath);
             },
