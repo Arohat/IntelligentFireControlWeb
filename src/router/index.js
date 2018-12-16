@@ -20,6 +20,8 @@ const departmentManagement = r => require.ensure([], () => r(require('@/page/sys
 const departmentTree = r => require.ensure([], () => r(require('@/page/systemManagement/department/departmentTree')), 'departmentTree');
 //部门添加
 const departmentAdd = r => require.ensure([], () => r(require('@/page/systemManagement/department/departmentAdd')), 'departmentAdd');
+//部门编辑
+const departmentEdit = r => require.ensure([], () => r(require('@/page/systemManagement/department/departmentEdit')), 'departmentEdit');
 export default new Router({
 	routes: [{
 			path: '/',

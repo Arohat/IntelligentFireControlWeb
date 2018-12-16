@@ -13,6 +13,11 @@ const api={
 	'queryAllSystemMenuInfo':'/sys/menu/queryAllSystemMenuInfo',//系统菜单那查询
 	//部门列表查询
     'departmentQuery':'/basic/department/query',
+    //部门列表添加
+    'departmentAdd':'/basic/department/add',
+    //部门列表编辑
+    'departmentEdit':'/basic/department/edit',
+    //部门树形
     'departmentTree':'/basic/department/tree',
     //日志列表查询
     'systemLogQuery':'/basic/systemLog/query',
