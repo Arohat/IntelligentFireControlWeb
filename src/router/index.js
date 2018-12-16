@@ -20,6 +20,14 @@ const departmentManagement = r => require.ensure([], () => r(require('@/page/sys
 const departmentTree = r => require.ensure([], () => r(require('@/page/systemManagement/department/departmentTree')), 'departmentTree');
 //部门添加
 const departmentAdd = r => require.ensure([], () => r(require('@/page/systemManagement/department/departmentAdd')), 'departmentAdd');
+//用户角色
+const userRoleManagement = r => require.ensure([], () => r(require('@/page/systemManagement/userManagement/userRoleManagement')), 'userRoleManagement');
+//系统角色
+const systemRole = r => require.ensure([], () => r(require('@/page/systemManagement/basicManagement/systemRole')), 'systemRole');
+//增加系统角色
+const addSystemRole = r => require.ensure([], () => r(require('@/page/systemManagement/basicManagement/addSystemRole')), 'addSystemRole');
+//修改系统角色
+const updateSystemRole = r => require.ensure([], () => r(require('@/page/systemManagement/basicManagement/updateSystemRole')), 'updateSystemRole');
 export default new Router({
 	routes: [{
 			path: '/',
@@ -138,7 +146,52 @@ export default new Router({
 						title: '部门添加',
 						path: '/departmentAdd'
 					}],
-				}
+				}, 
+				{
+					path: '/systemRole',
+					component: systemRole,
+					meta: [{
+						title: '基础管理',
+						path: '/systemRole'
+					}, {
+						title: '系统角色',
+						path: '/systemRole'
+					}],
+				}, 
+				{
+					path: '/addSystemRole',
+					component: addSystemRole,
+					meta: [{
+						title: '系统角色',
+						path: '/addSystemRole'
+					}, {
+						title: '添加角色',
+						path: '/addSystemRole'
+					}],
+				}, 
+				{
+					path: '/updateSystemRole',
+					component: updateSystemRole,
+					meta: [{
+						title: '系统角色',
+						path: '/updateSystemRole'
+					}, {
+						title: '修改系统角色',
+						path: '/updateSystemRole'
+					}],
+				}, 
+				{
+					path: '/userRoleManagement',
+					component: userRoleManagement,
+					meta: [{
+						title: '用户管理',
+						path: '/userRoleManagement'
+					}, {
+						title: '用户角色',
+						path: '/userRoleManagement'
+					}],
+				},
+				
 			]
 		}
 	]
