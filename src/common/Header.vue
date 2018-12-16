@@ -108,9 +108,9 @@
       },
     methods: {
         handleSelect(item) {
-            if(item.navigateUrl==''){
+//            if(item.navigateUrl==''){
                 Bus.$emit('on', item);
-            }
+//            }
         }
     },
   };
@@ -131,6 +131,12 @@
     background-color: #343744;
     border: 0;
     height: 50px;
+    .el-menu-item:hover{
+      background: rgb(20, 21, 26)!important;
+    }
+    .el-submenu__title:hover{
+      background: rgb(20, 21, 26)!important;
+    }
     .h-left{
       float: left;
     }

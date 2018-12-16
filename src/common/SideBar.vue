@@ -44,6 +44,7 @@
                 this.$message('获取左侧菜单失败');
             });
             Bus.$on('on', (msg) => {
+                console.log(msg)
                 this.menuId = msg.id
                 this.refresh(this.menuId)
             })
