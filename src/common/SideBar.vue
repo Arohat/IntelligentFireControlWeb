@@ -42,6 +42,32 @@
       </template>
     </el-menu-item>
   </el-submenu>
+  <el-submenu index="2">
+    <template slot="title">
+      <i class="el-icon-menu"></i>
+      <span slot="title">
+          系统设置
+      </span>
+    </template>
+    <el-menu-item index="/systemManagement/userManagement/userRoleManagement">
+      <template slot="title">
+        <i class="el-icon-menu"></i>
+        <span slot="title">
+            用户角色
+        </span>
+      </template>
+    </el-menu-item>
+    
+    <el-menu-item index="/systemManagement/basicManagement/systemRole">
+      <template slot="title">
+        <i class="el-icon-menu"></i>
+        <span slot="title">
+            	系统角色
+        </span>
+      </template>
+    </el-menu-item>
+    
+  </el-submenu>
   <el-submenu index="">
     <template slot="title">
       <i class="el-icon-menu"></i>
