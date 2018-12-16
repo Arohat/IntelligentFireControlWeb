@@ -28,7 +28,7 @@
     export default {
         data() {
             return {
-            	roleTypeName:'',
+            	roleTypeName:'text',
                 form: {
                     id:0,
                     roleType: '',
@@ -47,7 +47,7 @@
         },
         created:function(){
         	this.getParams();
-      		this.onQueryRoleType();
+//    		this.onQueryRoleType();
     	},
     	watch: {
 		  // 监测路由变化,只要变化了就调用获取路由参数方法将数据存储本组件即可
@@ -57,8 +57,11 @@
         	getParams(){
         		var　row = this.$route.query.row;
         		console.log(row);
+        		console.log(this.form.typeName);
         		this.form = row;
         		this.roleTypeName = row.typename;
+        		console.log(this.roleTypeName);
+        		
         	},
         	/**
         	 * 查询角色类型
@@ -68,7 +71,6 @@
 		        	
 		        })
 		          .then(data => {
-		            console.log(data);
 		           this.developments = data;
 		          }).catch(()=>{
 		          console.log("**********失败");
