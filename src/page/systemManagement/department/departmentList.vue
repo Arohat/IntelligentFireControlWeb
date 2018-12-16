@@ -121,7 +121,7 @@
 			//部门添加
 			departmentAdd() {
 				this.$router.push({
-					path: '/systemManagement/department/departmentAdd'
+					path: '/departmentAdd'
 				});
 			},
 			//部门禁用

@@ -62,7 +62,7 @@
 		},
         methods: {
         	departmentList(){
-        		this.$router.push({path: '/systemManagement/department/departmentQuery'});
+        		this.$router.push({path: '/departmentManagement'});
         	},
             getDictionarytTree(){
 //_____________________________________________________
@@ -79,7 +79,7 @@
                 /*this.dialogFormVisible = true;
                 this.triggerCurrenNodeData = d;
                 this.triggerCurrenNode = n;*/
-               this.$router.push({path: '/systemManagement/department/departmentAdd'});
+               this.$router.push({path: '/departmentAdd'});
             },
             addEventFormSubmitBtn(formname){
                 let dataPost={
@@ -152,11 +152,8 @@
                 <span>
                 <el-button size="mini" type="text" on-click={ () => this.appendEvent(store,data,node) }>添加</el-button>
                 <el-button size="mini" type="text" on-click={ () => this.remove(node, data) }>修改</el-button>
-               v-if(data.state==1){
                	<el-button size="mini"  type="text" on-click={ () => this.prohibit(node, data) }>禁用</el-button>
-               }else{
                	<el-button size="mini"  type="text" on-click={ () => this.prohibit(node, data) }>启用</el-button>
-               }
                 <el-button size="mini" type="text" on-click={ () => this.remove(node, data) }>删除</el-button>
                 </span>
                 </span>);
