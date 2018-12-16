@@ -14,7 +14,7 @@
             </el-select>
         </el-form-item>        
         <el-form-item label="输入名称">
-            <el-input v-model="form.roleName"></el-input>
+            <el-input v-model="form.name"></el-input>
         </el-form-item>
         <el-form-item>
             <el-button type="success" round @click="onSubmit">保存</el-button>
@@ -32,7 +32,7 @@
                 form: {
                     id:0,
                     roleType: '',
-                    roleName :'',
+                    name :'',
                 },
                 developments:[],
                 rules: {

@@ -4,14 +4,14 @@ import {Message, Loading} from 'element-ui'
 const baseURL ='http://localhost:8081/ifc';
 const http = axios.create({
   baseURL
-})
+});
 
 let loadinginstace;
 http.interceptors.request.use(config => {
   loadinginstace = Loading.service({fullscreen: true,background:'#00000000'});
-  if (config.method === 'post') {
+  // if (config.method === 'post') {
     config.data = qs.stringify(config.data)
-  }
+  // }
   return config;
 }, error => {
   loadinginstace.close();

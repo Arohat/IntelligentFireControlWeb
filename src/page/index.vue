@@ -5,7 +5,7 @@
     </div>
     <div class="layout-container">
       <div class="layout-left">
-        <SideBar></SideBar>
+        <SideBar v-show="showSideBar"></SideBar>
       </div>
       <div class="layout-right">
         <Container>
@@ -20,13 +20,32 @@
 import Header from "../common/Header";
 import SideBar from "../common/SideBar";
 import Container from "../common/Container";
+import Bus from '../Bus.js'
+
 export default {
   name: "CloudHome",
   data() {
-    return {};
+    return {
+        showSideBar:true
+    };
   },
+    mounted: function () {
+        Bus.$on('on', (msg) => {
+            console.log(msg)
+            if(msg.navigateUrl!='index'){
+                this.showSideBar = true
+            }else {
+                this.showSideBar = false
+            }
+        });
+      if(window.location.hash!='#/index'){
+          this.showSideBar = true
+      }else {
+          this.showSideBar = false
+      }
+    },
   components: {
-    Header,
+    Header ,
     SideBar,
     Container
   }
