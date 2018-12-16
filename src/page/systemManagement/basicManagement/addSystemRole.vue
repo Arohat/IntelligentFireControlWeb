@@ -51,7 +51,7 @@
         	 * 查询角色类型
         	 */
 		    onQueryRoleType(){
-		      	this.$http2.get(api.queryRoleType, {
+		      	this.$http2.get(api.querySystemRoleType, {
 		        	
 		        })
 		          .then(data => {
@@ -62,12 +62,12 @@
 		        });
 		      },
         	onSkip(){
-     		 this.$router.push({path: '/systemManagement/basicManagement/systemRole'});
+     		 this.$router.push({path: '/systemRole'});
      		},
             onSubmit() {
                 let query = this.form;
                 console.log(query);
-                this.$http2.post(api.addRole, {
+                this.$http2.post(api.addSystemRole, {
 		        	'name' :this.form.roleName,
 		        	'type': this.form.roleType
 		        })

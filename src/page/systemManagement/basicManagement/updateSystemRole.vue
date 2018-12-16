@@ -39,15 +39,15 @@
                  roleType: [
 		            { required: true, message: '选择类型', trigger: 'blur' }
 		          ],
-		         roleName: [
+		         name: [
 		            { required: true, message: '请输入角色名', trigger: 'blur' }
-		          ]
+		         ]
 		        },
             }
         },
         created:function(){
         	this.getParams();
-//    		this.onQueryRoleType();
+      		this.onQueryRoleType();
     	},
     	watch: {
 		  // 监测路由变化,只要变化了就调用获取路由参数方法将数据存储本组件即可
@@ -57,17 +57,16 @@
         	getParams(){
         		var　row = this.$route.query.row;
         		console.log(row);
-        		console.log(this.form.typeName);
+        		let  typeName = row.typename;
+        		this.roleTypeName = typeName;
         		this.form = row;
-        		this.roleTypeName = row.typename;
-        		console.log(this.roleTypeName);
         		
         	},
         	/**
         	 * 查询角色类型
         	 */
 		    onQueryRoleType(){
-		      	this.$http2.get(api.queryRoleType, {
+		      	this.$http2.get(api.querySystemRoleType, {
 		        	
 		        })
 		          .then(data => {
@@ -76,14 +75,21 @@
 		          console.log("**********失败");
 		        });
 		      },
+		      /**
+		       *返回
+		       */
         	onSkip(){
-     		 this.$router.push({path: '/systemManagement/basicManagement/systemRole'});
+     		 this.$router.push({path: '/systemRole'});
      		},
+     		/**
+     		 * 提交修改数据
+     		 */
             onSubmit() {
-                let query = this.form;
-                console.log(query);
-                this.$http2.post(api.addRole, {
-		        	'name' :this.form.roleName,
+            	console.log('**************');
+                let datas = this.form;
+                this.$http2.post(api.updateSystemRole, {
+                	'id' : this.form.id,
+		        	'name' :this.form.name,
 		        	'type': this.form.roleType
 		        })
 		          .then(data => {
