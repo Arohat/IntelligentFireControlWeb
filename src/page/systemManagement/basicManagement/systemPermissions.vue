@@ -1,18 +1,18 @@
 <template>
   <div>
     <el-breadcrumb separator-class="el-icon-arrow-right">
-      <el-breadcrumb-item :to="{ path: '/manage' }">��������</el-breadcrumb-item>
-      <el-breadcrumb-item>ϵͳȨ��</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: '/manage' }">基础管理</el-breadcrumb-item>
+      <el-breadcrumb-item>系统权限</el-breadcrumb-item>
     </el-breadcrumb>
     <el-form :inline="true" :model="formInline" size="mini" class="demo-form-inline" style="float: right;">
       
-      <el-form-item label="�ؼ��֣�">
-        <el-input v-model="formInline.keyWords" placeholder="������ؼ���"></el-input>
+      <el-form-item label="关键字：">
+        <el-input v-model="formInline.keyWords" placeholder="请输入关键字"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" icon="el-icon-search" @click="onSearch">����</el-button>
-        <el-button type="success" icon="el-icon-plus" @click="add">����</el-button>
-        <el-button type="danger" icon="el-icon-delete" v-show="deletShow" @click="delet">ɾ��</el-button>
+        <el-button type="primary" icon="el-icon-search" @click="onSearch">搜索</el-button>
+        <el-button type="success" icon="el-icon-plus" @click="add">新增</el-button>
+        <el-button type="danger" icon="el-icon-delete" v-show="deletShow" @click="delet">删除</el-button>
       </el-form-item>
     </el-form>
     <div class="container-table">
@@ -29,23 +29,23 @@
         
         <el-table-column
           prop="modelName"
-          label="ģ������
+          label="模块名称
           "
           width="200">
         </el-table-column>
         <el-table-column
           prop="powerName"
-          label="Ȩ������"
+          label="权限名称"
           width="200">
         </el-table-column>
         <el-table-column
           prop="displayName"
-          label="Ȩ��ֵ"
+          label="权限值"
           show-overflow-tooltip>
         </el-table-column>
         <el-table-column
           prop="remark"
-          label="��ע"
+          label="备注"
           show-overflow-tooltip>
         </el-table-column>
     
@@ -92,23 +92,23 @@
             	this.total = data.data.total
           	}
           }).catch(()=>{
-          console.log("ʧ��");
+          console.log("失败");
         });
     },
     methods: {
     	/**
-    	 * ɾ��
+    	 * 删除
     	 */
     	delet(){
     		var longs = []
     		/**
-    		 * ����multipleSelection���� ��ȡid
+    		 * 遍历multipleSelection数组 获取id
     		 */
     		this.multipleSelection.forEach(item => {
 			    longs.push(item.id)
 			  })
     		/**
-    		 * ɾ��
+    		 * 删除
     		 */
     		this.$http2.post('/basic/modelPower/deleteModelPower', {
           "longs": JSON.stringify(longs)
@@ -120,14 +120,14 @@
           			this.faOpen();
           	}
           }).catch(()=>{
-          console.log("ʧ��");
+          console.log("失败");
         });
     	},
       onSubmit() {
         console.log('submit!');
       },
       /**
-       * ����ҳ����ת
+       * 添加页面跳转
        */
       add(){
         this.$router.push({
@@ -139,15 +139,15 @@
 				})
       },
       /**
-       * �ɹ���Ϣ����
+       * 成功信息窗口
        */
       successOpen() {
-		        this.$alert('�����ɹ�', '��Ϣ', {
-		          confirmButtonText: 'ȷ��',
+		        this.$alert('操作成功', '信息', {
+		          confirmButtonText: '确定',
 		          callback: action => {
 		            this.$message({
 		              type: 'info',
-		              message: `�����ɹ�`
+		              message: `操作成功`
 		            });
 		            this.onSearch()
 		          }
@@ -155,11 +155,11 @@
 		        
 		     },
 		  /**
-		   * ʧ����Ϣ����
+		   * 失败信息窗口
 		   */
 	    faOpen() {
-	        this.$alert('����ʧ��', '��Ϣ', {
-	          confirmButtonText: 'ȷ��',
+	        this.$alert('操作失败', '信息', {
+	          confirmButtonText: '确定',
 	          callback: action => {
 	            this.$message({
 	              type: 'info',
@@ -170,7 +170,7 @@
 	        });
 	    },
 	    /**
-	     * ÿҳ��������
+	     * 每页多少数据
 	     */
       handleSizeChange(val) {
       	console.log(val)
@@ -179,7 +179,7 @@
 				vm.onSearch()
       },
       /**
-       * ��ǰҳ
+       * 当前页
        */
       handleCurrentChange(val) {
       	console.log(val)
@@ -194,7 +194,7 @@
 					sessionStorage.setItem(key, JSON.stringify(value));
 				}
 			},
-			// ��sessionStorageȡֵ
+			// 从sessionStorage取值
 			getContextData: function(key){
 				const str = sessionStorage.getItem(key);
 				if( typeof str == "string" ){
@@ -207,7 +207,7 @@
 				return;
 			},
 			/**
-			 * �жϸ�ѡ�����ݸ���  ����ʾ ����ɾ����ť��
+			 * 判断复选框数据个数  （显示 隐藏删除按钮）
 			 */
       handleSelectionChange(val) {
         this.multipleSelection = val;
@@ -218,7 +218,7 @@
         }
       },
       /**
-       * ������ť
+       * 搜索按钮
        */
       onSearch(){
       	this.$http2.post("/basic/modelPower/queryPageList", {
@@ -233,7 +233,7 @@
           	}
           	console.log(data.data.list);
           }).catch(()=>{
-          console.log("ʧ��");
+          console.log("失败");
         });
       }
     }

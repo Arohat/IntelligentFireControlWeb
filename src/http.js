@@ -16,7 +16,7 @@ http.interceptors.request.use(config => {
 }, error => {
   loadinginstace.close();
   Message.error({
-    message: 'Âä†ËΩΩË∂ÖÊó∂'
+    message: 'º”‘ÿ≥¨ ±'
   });
   return Promise.reject(error)
 });
@@ -33,7 +33,7 @@ http.interceptors.response.use(data => {
   console.log("data","data")
   loadinginstace.close();
   Message.error({
-    message: 'Âä†ËΩΩÂ§±Ë¥•'
+    message: 'º”‘ÿ ß∞‹'
   });
   return Promise.reject(error)
 });

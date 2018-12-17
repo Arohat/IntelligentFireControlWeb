@@ -1,12 +1,12 @@
 <template>
   <div>
     <el-breadcrumb separator-class="el-icon-arrow-right">
-      <el-breadcrumb-item :to="{ path: '/manage' }">”√ªßπ‹¿Ì</el-breadcrumb-item>
-      <el-breadcrumb-item>”√ªß»®œﬁ</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: '/manage' }">Áî®Êà∑ÁÆ°ÁêÜ</el-breadcrumb-item>
+      <el-breadcrumb-item>Áî®Êà∑ÊùÉÈôê</el-breadcrumb-item>
     </el-breadcrumb>
     <el-form :inline="true" :model="formInline" size="mini" class="demo-form-inline">
-      <el-form-item label="À˘ Ù≤ø√≈£∫">
-        <el-select v-model="formInline.department" filterable  placeholder="-«Î—°‘Ò-">
+      <el-form-item label="ÊâÄÂ±ûÈÉ®Èó®Ôºö">
+        <el-select v-model="formInline.department" filterable  placeholder="-ËØ∑ÈÄâÊã©-">
           <el-option
             v-for="item in departmentOptions"
             :key="item.value"
@@ -15,8 +15,8 @@
           </el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label="»®œﬁ…∏—°£∫">
-        <el-select v-model="formInline.power" filterable  placeholder="-«Î—°‘Ò-">
+      <el-form-item label="ÊùÉÈôêÁ≠õÈÄâÔºö">
+        <el-select v-model="formInline.power" filterable  placeholder="-ËØ∑ÈÄâÊã©-">
           <el-option
             v-for="item in powerOptions"
             :key="item.value"
@@ -25,8 +25,8 @@
           </el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label="”√ªß–‘±">
-        <el-select v-model="formInline.sex" filterable  placeholder="-«Î—°‘Ò-">
+      <el-form-item label="Áî®Êà∑ÊÄßÂà´">
+        <el-select v-model="formInline.sex" filterable  placeholder="-ËØ∑ÈÄâÊã©-">
           <el-option
             v-for="item in Sexs"
             :key="item.value"
@@ -35,11 +35,11 @@
           </el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label="πÿº¸◊÷£∫">
-        <el-input v-model="formInline.keyWords" placeholder="«Î ‰»Îπÿº¸◊÷"></el-input>
+      <el-form-item label="ÂÖ≥ÈîÆÂ≠óÔºö">
+        <el-input v-model="formInline.keyWords" placeholder="ËØ∑ËæìÂÖ•ÂÖ≥ÈîÆÂ≠ó"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" icon="el-icon-search" @click="onSearch">À—À˜</el-button>
+        <el-button type="primary" icon="el-icon-search" @click="onSearch">ÊêúÁ¥¢</el-button>
         
       </el-form-item>
     </el-form>
@@ -57,37 +57,37 @@
         
         <el-table-column
           prop="userName"
-          label="”√ªß√˚
+          label="Áî®Êà∑Âêç
           "
           width="200">
         </el-table-column>
         <el-table-column
           prop="telephone"
-          label="’À∫≈"
+          label="Ë¥¶Âè∑"
           width="200">
         </el-table-column>
         <el-table-column
           prop="jobNumber"
-          label="π§∫≈"
+          label="Â∑•Âè∑"
           width="200">
         </el-table-column>
         <el-table-column
           prop="dpartmentName"
-          label="À˘ Ù≤ø√≈"
+          label="ÊâÄÂ±ûÈÉ®Èó®"
           show-overflow-tooltip>
         </el-table-column>
         <el-table-column
           prop="sex"
-          label="–‘±"
+          label="ÊÄßÂà´"
           show-overflow-tooltip>
           <template slot-scope="scope">
-		        <el-text v-if = "scope.row.sex==0" >ƒ–</el-text>
-		        <el-text v-if = "scope.row.sex==1" >≈Æ</el-text>
+		        <el-text v-if = "scope.row.sex==0" >Áî∑</el-text>
+		        <el-text v-if = "scope.row.sex==1" >Â•≥</el-text>
 		      </template>
         </el-table-column>
         <el-table-column
           prop="powerName"
-          label="À˘æﬂ±∏»®œﬁ"
+          label="ÊâÄÂÖ∑Â§áÊùÉÈôê"
           show-overflow-tooltip>
         </el-table-column>
     
@@ -124,23 +124,23 @@
         departmentOptions:[],
         powerOptions:[{
           value: null,
-          label: '-«Î—°‘Ò-'
+          label: '-ËØ∑ÈÄâÊã©-'
         },{
-          value: 'Œ¥…Ë÷√»®œﬁ',
-          label: 'Œ¥…Ë÷√»®œﬁ'
+          value: 'Êú™ËÆæÁΩÆÊùÉÈôê',
+          label: 'Êú™ËÆæÁΩÆÊùÉÈôê'
         }, {
-          value: '“—…Ë÷√»®œﬁ',
-          label: '“—…Ë÷√»®œﬁ'
+          value: 'Â∑≤ËÆæÁΩÆÊùÉÈôê',
+          label: 'Â∑≤ËÆæÁΩÆÊùÉÈôê'
         }],
         Sexs: [{
           value: null,
-          label: '-«Î—°‘Ò-'
+          label: '-ËØ∑ÈÄâÊã©-'
         },{
           value: '0',
-          label: 'ƒ–'
+          label: 'Áî∑'
         }, {
           value: '1',
-          label: '≈Æ'
+          label: 'Â•≥'
         }],
       }
     },
@@ -158,7 +158,7 @@
             	this.total = data.data.total
           	}
           }).catch(()=>{
-          console.log(" ß∞‹");
+          console.log("Â§±Ë¥•");
         });
         this.$http2.get("/basic/userPower/getDpartmentName", {})
           .then(data => {
@@ -167,12 +167,12 @@
           		this.departmentOptions.unshift(
           			{
 				          id: null,
-				          name: '-«Î—°‘Ò-'
+				          name: '-ËØ∑ÈÄâÊã©-'
 				        }
           		)
           	}
           }).catch(()=>{
-          console.log(" ß∞‹");
+          console.log("Â§±Ë¥•");
         });
     },
     methods: {
@@ -240,7 +240,7 @@
           	}
           	console.log(data.data.list);
           }).catch(()=>{
-          console.log(" ß∞‹");
+          console.log("Â§±Ë¥•");
         });
       }
     }
