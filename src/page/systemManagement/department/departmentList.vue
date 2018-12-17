@@ -22,6 +22,9 @@
 				<el-table-column label="上级部门" prop="parentName" show-overflow-tooltip>
 				</el-table-column>
 				<el-table-column prop="name" label="部门名称" show-overflow-tooltip>
+					<template slot-scope="scope">
+						<el-button @click="departmentEdit(scope.row)" type="text">{{scope.row.name}}</el-button>
+					</template>
 				</el-table-column>
 				<el-table-column prop="state" label="状态" show-overflow-tooltip>
 					<template slot-scope="scope">
@@ -92,9 +95,18 @@
 					path: '/departmentTree'
 				});
 			},
+			//部门编辑
+			departmentEdit(row) {
+				this.$router.push({
+					path: '/departmentEdit',
+					query: {
+						row: row
+					},
+				});
+			},
 			//每页显示数据量变更
 			handleSizeChange(val) {
-				this.pagesize = val;
+				this.pageSize = val;
 				this.loadData(this.currentPage, this.pageSize);
 			},
 			//页码变更
