@@ -61,7 +61,6 @@
 	//勾选框全局变量
 	var checkboxs = '';
 	export default {
-		inject: ['reload'],
 		data() {
 			return {
 				formInline: {
@@ -132,10 +131,10 @@
 					.then(data => {
 						console.log(data);
 						if(data.code == '200') {
-							this.reload();
 							this.$message({
 								message: data.msg,
 							});
+							this.loadData(this.currentPage, this.pageSize);
 						} else {
 							this.$message({
 								message: data.msg,
@@ -149,23 +148,7 @@
 			 * 更新数据
 			 */
 			onLoad() {
-				this.$http2.get(api.querySystemRole +'?pageNum=1&pageSize=10', {
-
-					})
-					.then(data => {
-						//分页总数
-						this.total = data.data.total;
-						//每页显示数据
-						if(data.data.pageSize == null) {
-							this.pageSize = data.data.pageSize;
-						} else {
-							this.pageSize = 10;
-						}
-						//数据
-						this.tableData = data.data.list;
-					}).catch(() => {
-						console.log("**********失败");
-					});
+				this.loadData(this.currentPage, this.pageSize);
 			},
 			/**
 			 * 删除
@@ -184,6 +167,7 @@
 							this.$message({
 								message: data.msg,
 							});
+							this.loadData(this.currentPage, this.pageSize);
 						}).catch(() => {
 							console.log("**********失败");
 						});
