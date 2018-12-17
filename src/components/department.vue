@@ -132,7 +132,7 @@
 //                ____________________
                 this.$http('post', '/api/***/****', {queryParams: dataPost})
                     .then((res) => {
-                        if (res.statusCode === 200) {
+                        if (res.statusCode ==0) {
                             this.dialogFormVisible = false;
                             this.departmentName = '';
                             /*刷新树形菜单*/

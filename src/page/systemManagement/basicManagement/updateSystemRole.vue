@@ -1,14 +1,14 @@
 <template>
-    <el-form class="container-form" :rules="rules" ref="form" :model="form" label-width="80px">
+    <el-form class="container-form" :rules="rules" ref="form" :model="form" label-width="80px" @change="handlerChange">
     	<el-form-item label="id">
-            <el-input v-model="form.id"></el-input>
+            <el-input v-model="form.id" :disabled="true"></el-input>
         </el-form-item>
         <el-form-item label="选择类型">
-            <el-select v-model="form.roleType" :placeholder=roleTypeName>
+            <el-select v-model="form.roleType" filterable :placeholder=roleTypeName>
                 <el-option
 	            v-for="item in developments"
 	            :key="item.type"
-	            :label="item.typeName"
+	            :label="item.typename"
 	            :value="item.type">
 	          </el-option>
             </el-select>
@@ -56,12 +56,28 @@
         methods: {
         	getParams(){
         		var　row = this.$route.query.row;
-        		console.log(row);
         		let  typeName = row.typename;
         		this.roleTypeName = typeName;
         		this.form = row;
         		
         	},
+        	/**
+        	 * 系统角色修改
+        	 */
+        	SystemRoleUpdate(data){
+				 this.$confirm('是否修改?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    this.onSubmit();
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: '已取消'
+                    });
+                });
+			},
         	/**
         	 * 查询角色类型
         	 */
@@ -72,7 +88,7 @@
 		          .then(data => {
 		           this.developments = data;
 		          }).catch(()=>{
-		          console.log("**********失败");
+		          console.log("**********错误");
 		        });
 		      },
 		      /**
@@ -85,7 +101,6 @@
      		 * 提交修改数据
      		 */
             onSubmit() {
-            	console.log('**************');
                 let datas = this.form;
                 this.$http2.post(api.updateSystemRole, {
                 	'id' : this.form.id,
@@ -93,19 +108,17 @@
 		        	'type': this.form.roleType
 		        })
 		          .then(data => {
-		            console.log(data);
-		           if(data.code=='200'){
-	          			this.$message({
-	                	message: data.msg,
-	            		});
-	            		this.onSkip();
-		          	}else{
-	          			this.$message({
-	                	message: data.msg,
-	            		});
-		          	}
+		          	if(data.code == 0) {
+						this.$message({
+							type: 'success',
+							message: data.msg
+						});
+						this.onSkip();
+					} else {
+						this.$message.error(data.msg);
+					}
 		          }).catch(()=>{
-		          console.log("**********失败");
+		          console.log("********错误");
 		        });
             },
             handlebeforeupload(file,fileList){
@@ -114,6 +127,9 @@
             handleRemove(file, fileList) {
                 this.form.fileList = fileList
             },
+            handlerChange(){
+            	console.log('*********');
+            }
         }
     }
 </script>

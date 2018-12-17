@@ -1,12 +1,12 @@
 <template>
     <el-form class="container-form" :rules="rules" ref="form" :model="form" label-width="80px">
         <el-form-item label="选择类型">
-            <el-select v-model="form.roleType" placeholder="请选择活动区域">
+            <el-select v-model="form.roleType" filterable placeholder="请选择活动区域">
                 <el-option label="请选择" value=""></el-option>
                 <el-option
 	            v-for="item in developments"
 	            :key="item.type"
-	            :label="item.typeName"
+	            :label="item.typename"
 	            :value="item.type">
 	          </el-option>
             </el-select>
@@ -34,11 +34,9 @@
                 },
                 developments:[],
                 rules: {
-		          roleType: [
-		            { required: true, message: '选择类型', trigger: 'blur' }
-		          ],
 		         roleName: [
-		            { required: true, message: '请输入角色名', trigger: 'blur' }
+		            { required: true, message: '请输入角色名', trigger: 'blur' },
+		            { min: 1, max: 10, message: '长度在 1 到 10 个字符', trigger: 'blur' }
 		          ]
 		        },
             }
@@ -73,7 +71,7 @@
 		        })
 		          .then(data => {
 		            console.log(data);
-		           if(data.code=='200'){
+		           if(data.code==0){
 	          			this.$message({
 	                	message: data.msg,
 	            		});

@@ -4,10 +4,11 @@
 			<el-breadcrumb-item :to="{ path: '/manage' }">基础管理</el-breadcrumb-item>
 			<el-breadcrumb-item>用户管理</el-breadcrumb-item>
 		</el-breadcrumb>
-		<el-form :inline="true" :model="formInline" size="mini" class="demo-form-inline">
+		<el-form :inline="true" :model="formInline" size="mini" ref="formInline" class="demo-form-inline">
 			<el-form-item label="角色类型">
 				<el-select v-model="formInline.type" placeholder="角色类型">
-					<el-option v-for="item in developments" :key="item.type" :label="item.typeName" :value="item.type">
+					<el-option label="所有角色类型" value=""></el-option>
+					<el-option v-for="item in developments" filterable :key="item.type" :label="item.typename" :value="item.type">
 					</el-option>
 				</el-select>
 			</el-form-item>
@@ -28,14 +29,17 @@
 				</el-table-column>
 				<el-table-column label="角色ID" prop="id" width="100">
 				</el-table-column>
-				<el-table-column label="角色类型" prop="typeName" width="200">
+				<el-table-column label="角色类型" prop="typename" width="200">
 				</el-table-column>
 				<el-table-column prop="name" label="角色名" width="200">
+					<template slot-scope="scope">
+						<el-button @click="onSkipUpdate(scope.row)" type="text">{{scope.row.name}}</el-button>
+					</template>
 				</el-table-column>
 				<el-table-column prop="state" label="状态" show-overflow-tooltip>
 					<template slot-scope="scope">
-						<el-button size="mini" v-if="scope.row.state==0" type="success">已启用</el-button>
-						<el-button size="mini" v-else-if="scope.row.state==1" type="danger">已禁用</el-button>
+						<el-button size="mini" v-if="scope.row.state==1" type="success">已启用</el-button>
+						<el-button size="mini" v-else-if="scope.row.state==0" type="danger">已禁用</el-button>
 					</template>
 				</el-table-column>
 				<el-table-column prop="state" label="操作" width="200" show-overflow-tooltip>
@@ -43,9 +47,9 @@
 						<el-dropdown trigger="click">
 							<el-button type="primary" size="mini">操作<i class="el-icon-arrow-down el-icon--right"></i></el-button>
 							<el-dropdown-menu slot="dropdown">
-								<el-dropdown-item @click.native="onSkipUpdate(scope.row)"><i class="el-icon-remove" style="margin-right: 5px"></i>修改</el-dropdown-item>
-								<el-dropdown-item v-if="scope.row.state==1" @click.native="onChange( scope.row.id,scope.row.state)"><i class="el-icon-edit-outline" style="margin-right: 5px"></i>启用</el-dropdown-item>
-								<el-dropdown-item v-else="scope.row.state==0" @click.native="onChange( scope.row.id,scope.row.state)"><i class="el-icon-edit-outline" style="margin-right: 5px"></i>禁用</el-dropdown-item>
+								
+								<el-dropdown-item v-if="scope.row.state==0" @click.native="SystemRoleEnable( scope.row)"><i class="el-icon-remove" style="margin-right: 5px"></i>启用</el-dropdown-item>
+								<el-dropdown-item v-else="scope.row.state==1" @click.native="SystemRoleProhibit( scope.row)"><i class="el-icon-remove" style="margin-right: 5px"></i>禁用</el-dropdown-item>
 							</el-dropdown-menu>
 						</el-dropdown>
 					</template>
@@ -58,13 +62,13 @@
 
 <script>
 	import api from '@/api/api';
-	//勾选框全局变量
-	var checkboxs = '';
+
 	export default {
 		data() {
 			return {
 				formInline: {
 					type: '',
+					keyword:''
 				},
 				pageSize: 10,
 				currentPage: 1,
@@ -72,21 +76,27 @@
 				tableData:[],
 				developments: [],
 				value: '',
-				multipleSelection: []
+				multipleSelection: [],
+				rules: {
+		         	keyword: [
+			            { min: 1, max: 5, message: '长度在 1 到 5个字符', trigger: 'blur' }
+		          	]
+		        },
 			}
 		},
 		/**
 		 * 进入页面加载数据
 		 */
 		created() {
-			this.loadData(this.currentPage, this.pageSize);
+			this.loadData(this.currentPage, this.pageSize,this.formInline.type,this.formInline.keyword);
 			this.onQueryRoleType();
 		},
 		methods: {
 			//从服务器读取数据
-			loadData: function(pageNum, pageSize) {
+			loadData: function(pageNum, pageSize,type,keyword) {
 				this.$http.post(api.querySystemRole, {
-					//"keyword": this.formInline.keyword,
+					"type": type,
+					"keyword": keyword,
 					"pageNum": pageNum,
 					"pageSize": pageSize
 				}).then(data => {
@@ -96,7 +106,58 @@
 					console.log("失败");
 				});
 			},
-
+			/**
+			 *系统 角色启用
+			 */
+			SystemRoleEnable(data){
+				 this.$confirm('是否启用?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    this.onChange(data.id,1);
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: '已取消'
+                    });
+                });
+			},
+			/**
+			 *系统 角色禁用
+			 */
+			SystemRoleProhibit(data){
+				 this.$confirm('是否禁用?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    this.onChange(data.id,0);
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: '已取消'
+                    });
+                });
+			},
+			/**
+			 * 角色删除
+			 */
+			SystemRoleDelete(data){
+				 this.$confirm('是否删除?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    this.onDelete();
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: '已取消'
+                    });
+                });
+			},
+			
 			/**
 			 * 跳转新增
 			 */
@@ -120,26 +181,19 @@
 			 * 状态改变 
 			 */
 			onChange(id, state) {
-				if(state <= 0) {
-					state = 1;
-				} else {
-					state = 0;
-				}
-				this.$http2.post(api.updateRole, {
+				this.$http2.post(api.updateSystemRole, {
 						'id': id,
 						'state': state,
 					})
 					.then(data => {
-						console.log(data);
-						if(data.code == '200') {
+						if(data.code == 0) {
 							this.$message({
-								message: data.msg,
+								type: 'success',
+								message: data.msg
 							});
-							this.loadData(this.currentPage, this.pageSize);
+							this.onLoad();
 						} else {
-							this.$message({
-								message: data.msg,
-							});
+							this.$message.error(data.msg);
 						}
 					}).catch(() => {
 						console.log("**********失败");
@@ -155,20 +209,26 @@
 			 * 删除
 			 */
 			onDelete() {
+				var checkboxs = this.multipleSelection;
 				if(checkboxs.length > 0) {
 					let arr = '';
 					for(var i = 0; i < checkboxs.length; i++) {
-						arr += val[i].id + ',';
+						arr += checkboxs[i].id + ',';
 					}
 					console.log(arr);
 					this.$http2.post(api.deleteSystemRole, {
 							'arr': arr,
 						})
 						.then(data => {
-							this.$message({
-								message: data.msg,
-							});
-							this.loadData(this.currentPage, this.pageSize);
+							if(data.code == 0) {
+								this.$message({
+									type: 'success',
+									message: data.msg
+								});
+								this.onLoad();
+							} else {
+								this.$message.error(data.msg);
+							}
 						}).catch(() => {
 							console.log("**********失败");
 						});
@@ -193,13 +253,8 @@
 			 * 勾选框
 			 */
 			handleSelectionChange(val) {
-				checkboxs = '';
 				this.multipleSelection = val;
-				if(val.length > 0) {
-					checkboxs = val;
-				} else {
-					checkboxs = 0;
-				}
+				
 
 			},
 			/**
@@ -219,18 +274,7 @@
 			 * 条件查询
 			 */
 			onSearch() {
-
-				this.$http2.post(api.queryConditionSystemRole, {
-						//角色类型
-						"type": this.formInline.type,
-						"keyword": this.formInline.keyword
-					})
-					.then(data => {
-						this.tableData = data.data.list;
-						console.log(data.data);
-					}).catch(() => {
-						console.log("**********失败");
-					});
+				this.loadData(this.currentPage, this.pageSize,this.formInline.type,this.formInline.keyword);
 			}
 		}
 	}

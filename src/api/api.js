@@ -1,17 +1,17 @@
 const api={
     'login':'/sys/login',
     'getImage':'/sys/getImage',
-    //查询系统角色
+    //查询系统角色（包括角色查询）
     'querySystemRole':'/basic/role/queryList',
     //删除系统角色
     'deleteSystemRole':'/basic/role//deleteRole',
     //修改系统角色
-    'updateSystemRole':'/basic/role/updateState',
+    'updateSystemRole':'/basic/role/updateRole',
     //查询系统角色分类
     'querySystemRoleType':'/basic/role/queryRoleType',
-    //添加角色
+    //添加系统角色
     'addSystemRole' : '/basic/role/add',
-    
+
     'findMenuByUser':'/sys/findMenuByUser',
     'findMenuByUserAndParentId':'/sys/menu/findMenuByUserAndParentId',
     'findTwoAndThreeUserMenuTree':'/sys/menu/findTwoAndThreeUserMenuTree',

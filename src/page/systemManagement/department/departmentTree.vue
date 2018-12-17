@@ -81,6 +81,15 @@
                 this.triggerCurrenNode = n;*/
                this.$router.push({path: '/departmentAdd'});
             },
+            //部门编辑
+			departmentEdit(row) {
+				this.$router.push({
+					path: '/departmentEdit',
+					query: {
+						row: row
+					},
+				});
+			},
             addEventFormSubmitBtn(formname){
                 let dataPost={
                     label: this.departmentName.trim(),
@@ -151,7 +160,7 @@
                     <span>{node.label}</span>
                 <span>
                 <el-button size="mini" type="text" on-click={ () => this.appendEvent(store,data,node) }>添加</el-button>
-                <el-button size="mini" type="text" on-click={ () => this.remove(node, data) }>修改</el-button>
+                <el-button size="mini" type="text" on-click={ () => this.departmentEdit(data) }>修改</el-button>
                	<el-button size="mini"  type="text" on-click={ () => this.prohibit(node, data) }>禁用</el-button>
                	<el-button size="mini"  type="text" on-click={ () => this.prohibit(node, data) }>启用</el-button>
                 <el-button size="mini" type="text" on-click={ () => this.remove(node, data) }>删除</el-button>
