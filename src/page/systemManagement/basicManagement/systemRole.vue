@@ -61,7 +61,7 @@
 	//勾选框全局变量
 	var checkboxs = '';
 	export default {
-		//inject: ['reload'],
+		inject: ['reload'],
 		data() {
 			return {
 				formInline: {
@@ -85,7 +85,7 @@
 		methods: {
 			//从服务器读取数据
 			loadData: function(pageNum, pageSize) {
-				this.$http.post(api.queryListRole, {
+				this.$http.post(api.querySystemRole, {
 					//"keyword": this.formInline.keyword,
 					"pageNum": pageNum,
 					"pageSize": pageSize
@@ -102,7 +102,7 @@
 			 */
 			onSkipAdd() {
 				this.$router.push({
-					path: '/systemManagement/basicManagement/addSystemRole'
+					path: '/addSystemRole'
 				});
 			},
 			/**
@@ -110,7 +110,7 @@
 			 */
 			onSkipUpdate(row) {
 				this.$router.push({
-					path: '/systemManagement/basicManagement/updateSystemRole',
+					path: '/updateSystemRole',
 					query: {
 						row:row
 					},
@@ -149,7 +149,7 @@
 			 * 更新数据
 			 */
 			onLoad() {
-				this.$http2.get(api.queryListRole +'?pageNum=1&pageSize=10', {
+				this.$http2.get(api.querySystemRole +'?pageNum=1&pageSize=10', {
 
 					})
 					.then(data => {
@@ -177,7 +177,7 @@
 						arr += val[i].id + ',';
 					}
 					console.log(arr);
-					this.$http2.post(api.deleteListRole, {
+					this.$http2.post(api.deleteSystemRole, {
 							'arr': arr,
 						})
 						.then(data => {
@@ -196,7 +196,7 @@
 			},
 			//每页显示数据量变更
 			handleSizeChange(val) {
-				this.pagesize = val;
+				this.pageSize = val;
 				this.loadData(this.currentPage, this.pageSize);
 			},
 			//页码变更
@@ -222,7 +222,7 @@
 			 */
 			onQueryRoleType() {
 				console.log('*****');
-				this.$http2.get(api.queryRoleType, {
+				this.$http2.get(api.querySystemRoleType, {
 
 					})
 					.then(data => {
@@ -236,7 +236,7 @@
 			 * 条件查询
 			 */
 			onSearch() {
-				this.$http2.get(api.queryListRole, {
+				this.$http2.get(api.querySystemRole, {
 						//角色类型
 						"region": this.formInline.type,
 						"keyWord": this.formInline.keyWord,
