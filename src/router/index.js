@@ -10,8 +10,11 @@ const login = r => require.ensure([], () => r(require('@/page/login')), 'login')
 const userManagement = r => require.ensure([], () => r(require('@/components/userManagement')), 'userManagement');
 const informationAdded = r => require.ensure([], () => r(require('@/components/informationAdded')), 'informationAdded');
 const department = r => require.ensure([], () => r(require('@/components/department')), 'department');
+const systemPermissions = r => require.ensure([], () => r(require('@/page/systemManagement/basicManagement/systemPermissions')), 'systemPermissions');
+const systemPermissionsAdd = r => require.ensure([], () => r(require('@/page/systemManagement/basicManagement/systemPermissionsAdd')), 'systemPermissionsAdd');
 const systemMenu = r => require.ensure([], () => r(require('@/page/systemManagement/basicManagement/systemMenu')), 'systemMenu');
 const systemMenuAdd = r => require.ensure([], () => r(require('@/page/systemManagement/basicManagement/systemMenuAdd')), 'systemMenuAdd');
+
 //系统日志
 const systemLog = r => require.ensure([], () => r(require('@/page/systemManagement/basicManagement/systemLog')), 'systemLog');
 //部门信息
@@ -30,7 +33,7 @@ export default new Router({
 				isHadLogin: true,
 			}
 		},
-		{
+         {
 			path: '/index',
 			name: '首页',
 			component: manage,
@@ -150,7 +153,19 @@ export default new Router({
 					}, {
 						title: '部门编辑',
 						path: '/departmentEdit'
-					}],
+					},
+					{
+                    path: '/systemMenu',
+                    component: systemMenu,
+                    meta: [{title: '系统菜单', path: '/systemMenu'}, {title: '系统菜单', path: '/systemMenu' }],
+                },
+                {
+                    path: '/systemMenuAdd',
+                    component: systemMenuAdd,
+                    meta: [{title: '系统菜单', path: '/systemMenuAdd'}, { title: '系统菜单', path: '/systemMenuAdd'}]
+		            }
+
+					],
 				}
 			]
 		}
