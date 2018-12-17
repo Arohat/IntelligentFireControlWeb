@@ -7,7 +7,7 @@
 		<el-form :inline="true" :model="formInline" size="mini" class="demo-form-inline">
 			<el-form-item label="角色类型">
 				<el-select v-model="formInline.type" placeholder="角色类型">
-					<el-option v-for="item in developments" :key="item.value" :label="item.label" :value="item.value">
+					<el-option v-for="item in developments" :key="item.type" :label="item.typeName" :value="item.type">
 					</el-option>
 				</el-select>
 			</el-form-item>
@@ -80,6 +80,7 @@
 		 */
 		created() {
 			this.loadData(this.currentPage, this.pageSize);
+			this.onQueryRoleType();
 		},
 		methods: {
 			//从服务器读取数据
@@ -205,13 +206,11 @@
 			 * 查询角色类型
 			 */
 			onQueryRoleType() {
-				console.log('*****');
 				this.$http2.get(api.querySystemRoleType, {
 
 					})
 					.then(data => {
-
-						console.log(data.data);
+		           		this.developments = data;
 					}).catch(() => {
 						console.log("**********失败");
 					});
@@ -220,10 +219,11 @@
 			 * 条件查询
 			 */
 			onSearch() {
-				this.$http2.get(api.querySystemRole, {
+
+				this.$http2.post(api.queryConditionSystemRole, {
 						//角色类型
-						"region": this.formInline.type,
-						"keyWord": this.formInline.keyWord,
+						"type": this.formInline.type,
+						"keyword": this.formInline.keyword
 					})
 					.then(data => {
 						this.tableData = data.data.list;
