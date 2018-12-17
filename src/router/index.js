@@ -5,6 +5,7 @@ import HelloWorld from '@/components/HelloWorld'
 
 Vue.use(Router)
 
+const index = r => require.ensure([], () => r(require('@/page/firstPage')), 'index');
 const login = r => require.ensure([], () => r(require('@/page/login')), 'login');
 const userManagement = r => require.ensure([], () => r(require('@/components/userManagement')), 'userManagement');
 const informationAdded = r => require.ensure([], () => r(require('@/components/informationAdded')), 'informationAdded');
@@ -13,82 +14,147 @@ const systemPermissions = r => require.ensure([], () => r(require('@/page/system
 const systemPermissionsAdd = r => require.ensure([], () => r(require('@/page/systemManagement/basicManagement/systemPermissionsAdd')), 'systemPermissionsAdd');
 const systemMenu = r => require.ensure([], () => r(require('@/page/systemManagement/basicManagement/systemMenu')), 'systemMenu');
 const systemMenuAdd = r => require.ensure([], () => r(require('@/page/systemManagement/basicManagement/systemMenuAdd')), 'systemMenuAdd');
-export default new Router({
-  routes: [
-    {
-      path: '/',
-      component: login,
-      meta: {
-        isHadLogin: true,
-      }
-    },
-    {
-      path: '/index',
-      name: '首页',
-      component: manage,
-      meta:{
-        requireAuth:true,
-      },
-      children: [{
-        path: '',
-        component: userManagement,
-        meta: [],
-      }, {
-        path: '/systemManagement/userManagement/userManagement',
-        component: userManagement,
-        meta: [{title: '用户管理', path: '/userManagement'}, {title: '用户管理', path: '/userManagement'}],
-      },
-      {
-        path: '/systemManagement/basicManagement/systemPermissions',
-        component: systemPermissions,
-        meta: [{title: '系统权限', path: '/systemManagement/basicManagement/systemPermissions'}, {title: '系统权限', path: '/systemManagement/basicManagement/systemPermissions'}],
-      }, 
-      {
-        path: '/systemManagement/basicManagement/systemPermissionsAdd',
-        component: systemPermissionsAdd,
-        meta: [{title: '添加系统权限', path: '/systemManagement/basicManagement/systemPermissionsAdd'}, {title: '添加系统权限', path: '/systemManagement/basicManagement/systemPermissionsAdd'}],
-      },{
-          path: '/informationAdded',
-      }, {
-          path: '/systemManagement/userManagement/userRoleManagement',
-          component: informationAdded,
-          meta: [{title: '用户管理', path: '/informationAdded'}, {title: '用户管理', path: '/informationAdded'}],
-      },
-          {
-              path: '/systemManagement/userManagement/departmentManagement',
-              component: department,
-              meta: [{title: '用户管理', path: '/department'}, {title: '用户管理', path: '/department'}],
-          },
 
-      ]
-    },
-		{
-		      path: '/basicManagement',
-		      name: '基础管理',
-		      component: manage,
-		      meta:{
-		        requireAuth:true,
-		      },
-		      children: [{
-		        path: '',
-		        component: userManagement,
-		        meta: [],
-		      }, {
-		        path: '/userManagement',
-		        component: userManagement,
-		        meta: [{title: '用户管理', path: '/userManagement'}, {title: '用户管理', path: '/userManagement'}],
-		      }, {
-		          path: '/informationAdded',
-		          component: informationAdded,
-		          meta: [{title: '用户管理', path: '/informationAdded'}, {title: '用户管理', path: '/informationAdded'}],
-		      },
-		          {
-		              path: '/department',
-		              component: department,
-		              meta: [{title: '用户管理', path: '/department'}, {title: '用户管理', path: '/department'}],
-		          },
-							
-									{
+//系统日志
+const systemLog = r => require.ensure([], () => r(require('@/page/systemManagement/basicManagement/systemLog')), 'systemLog');
+//部门信息
+const departmentManagement = r => require.ensure([], () => r(require('@/page/systemManagement/department/departmentList')), 'departmentManagement');
+//部门树形
+const departmentTree = r => require.ensure([], () => r(require('@/page/systemManagement/department/departmentTree')), 'departmentTree');
+//部门添加
+const departmentAdd = r => require.ensure([], () => r(require('@/page/systemManagement/department/departmentAdd')), 'departmentAdd');
+//部门编辑
+const departmentEdit = r => require.ensure([], () => r(require('@/page/systemManagement/department/departmentEdit')), 'departmentEdit');
+export default new Router({
+	routes: [{
+			path: '/',
+			component: login,
+			meta: {
+				isHadLogin: true,
+			}
+		},
+         {
+			path: '/index',
+			name: '首页',
+			component: manage,
+			meta: {
+				requireAuth: true,
+			},
+			children: [{
+					path: '/index',
+					component: index,
+					meta: [],
+				},
+				{
+					path: '/department',
+					component: department,
+					meta: [{
+						title: '用户管理',
+						path: '/department'
+					}, {
+						title: '用户管理',
+						path: '/department'
+					}],
+				},
+				{
+					path: '/systemMenu',
+					component: systemMenu,
+					meta: [{
+						title: '系统菜单',
+						path: '/systemMenu'
+					}, {
+						title: '系统菜单',
+						path: '/systemMenu'
+					}],
+				},
+				{
+					path: '/userManagement',
+					component: userManagement,
+					meta: [{
+						title: '用户管理',
+						path: '/userManagement'
+					}, {
+						title: '用户管理',
+						path: '/userManagement'
+					}],
+				},
+				{
+					path: '/informationAdded',
+					component: informationAdded,
+					meta: [{
+						title: '用户管理',
+						path: '/informationAdded'
+					}, {
+						title: '用户管理',
+						path: '/informationAdded'
+					}],
+				},
+				{
+					path: '/systemMenuAdd',
+					component: systemMenuAdd,
+					meta: [{
+						title: '系统菜单',
+						path: '/systemMenuAdd'
+					}, {
+						title: '系统菜单',
+						path: '/systemMenuAdd'
+					}],
+				},
+				{
+					path: '/systemLog',
+					component: systemLog,
+					meta: [{
+						title: '系统日志',
+						path: '/systemLog'
+					}, {
+						title: '系统日志',
+						path: '/systemLog'
+					}],
+				},
+				{
+					path: '/departmentManagement',
+					component: departmentManagement,
+					meta: [{
+						title: '部门管理',
+						path: '/departmentManagement'
+					}, {
+						title: '部门管理',
+						path: '/departmentManagement'
+					}],
+				},
+				{
+					path: '/departmentTree',
+					component: departmentTree,
+					meta: [{
+						title: '部门树形',
+						path: '/departmentTree'
+					}, {
+						title: '部门树形',
+						path: '/departmentTree'
+					}],
+				},
+				{
+					path: '/departmentAdd',
+					component: departmentAdd,
+					meta: [{
+						title: '部门添加',
+						path: '/departmentAdd'
+					}, {
+						title: '部门添加',
+						path: '/departmentAdd'
+					}],
+				},
+				{
+					path: '/departmentEdit',
+					component: departmentEdit,
+					meta: [{
+						title: '部门编辑',
+						path: '/departmentEdit'
+					}, {
+						title: '部门编辑',
+						path: '/departmentEdit'
+					},
+					{
                     path: '/systemMenu',
                     component: systemMenu,
                     meta: [{title: '系统菜单', path: '/systemMenu'}, {title: '系统菜单', path: '/systemMenu' }],
@@ -98,12 +164,10 @@ export default new Router({
                     component: systemMenuAdd,
                     meta: [{title: '系统菜单', path: '/systemMenuAdd'}, { title: '系统菜单', path: '/systemMenuAdd'}]
 		            }
-		      ]
-		    },
-    {
-      path: '/HelloWorld',
-      name: 'HelloWorld',
-      component: HelloWorld
-    }
-  ]
+
+					],
+				}
+			]
+		}
+	]
 })

@@ -4,7 +4,7 @@
 			<el-breadcrumb-item :to="{ path: '/manage' }">基础管理</el-breadcrumb-item>
 			<el-breadcrumb-item>部门管理</el-breadcrumb-item>
 		</el-breadcrumb>
-		<el-form :inline="true" :model="formInline" size="mini" class="demo-form-inline">
+		<el-form :inline="true"  size="mini" class="demo-form-inline">
 			<el-form-item>
 				<el-button type="success" icon="el-icon-edit-outline" @click="onSubmit">保存</el-button>
 			</el-form-item>
@@ -12,7 +12,7 @@
 				<el-button type="primary" icon="el-icon-back" @click="goBack">返回</el-button>
 			</el-form-item>
 		</el-form>
-		<el-form class="container-form" :model="form" label-width="80px">
+		<el-form class="container-form" :model="form" ref="form" label-width="80px">
 			<el-form-item label="上级部门">
 				<el-select v-model="form.parentId" filterable placeholder="请选择或搜索">
 					<el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
@@ -33,9 +33,9 @@
 	export default {
 		data() {
 			return {
-				form: {
+				form:{
 					name: '',
-					parentId: ''
+					parentId: 0,
 				},
 				options: [{
 					value: '选项1',
@@ -46,7 +46,19 @@
 				}],
 			}
 		},
+		watch: {
+		  '$route': 'getParams'
+		},
+		created: function() {
+			this.getParams();
+		},
 		methods: {
+			getParams(){
+        		var　row = this.$route.query.row;
+/*        		let  name = row.name;
+        		this.name = name;*/
+        		this.form = row;
+        	},
 			goBack() {
 				this.$router.go(-1)
 			},

@@ -106,7 +106,7 @@
 			},
 			//每页显示数据量变更
 			handleSizeChange(val) {
-				this.pagesize = val;
+				this.pageSize = val;
 				this.loadData(this.currentPage, this.pageSize);
 			},
 			//页码变更
