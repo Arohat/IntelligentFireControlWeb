@@ -72,22 +72,30 @@
     }
 </script>
 <style lang='less'>
+  .layout-left{
     .menu-icon {
-        height: 37px;
-        line-height: 37px;
-        text-align: center;
-        background: #343744;
-        cursor: pointer;
+      height: 37px;
+      line-height: 37px;
+      text-align: center;
+      background: #343744;
+      cursor: pointer;
     }
 
     .el-menu-vertical-demo:not(.el-menu--collapse) {
-        width: 200px;
-        min-height: 400px;
+      width: 200px;
+      min-height: 400px;
     }
 
     .el-menu {
-        border-right: 0;
+      border-right: 0;
     }
+
+    .el-submenu {
+      border-bottom: 1px #1a1d24 solid;
+      border-top: 1px #535456 solid;
+    }
+  }
+
 </style>
 
 

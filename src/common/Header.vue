@@ -73,10 +73,19 @@
       >
         {{value.name}}
       </el-menu-item>
-      <el-submenu index="2">
+    </el-menu>
+    <el-menu
+            class="el-menu-header-right"
+            mode="horizontal"
+            router :default-active="$route.path"
+            background-color="rgb(52, 55, 68)"
+            text-color="#fff"
+            active-text-color="#ffd04b"
+    >
+      <el-submenu index="1">
         <template slot="title">超级管理员</template>
-        <el-menu-item index="2-1">个人资料</el-menu-item>
-        <el-menu-item index="2-2">退出</el-menu-item>
+        <el-menu-item index="1-1">个人资料</el-menu-item>
+        <el-menu-item index="1-2">退出</el-menu-item>
       </el-submenu>
     </el-menu>
   </div>
@@ -123,8 +132,20 @@
   .el-menu--horizontal>.el-submenu .el-submenu__title,.el-menu--horizontal>.el-menu-item{
     height: 50px!important;
     line-height: 50px!important;
+    border-left: 1px #545559 solid;
+    border-right: 1px #1a1d24 solid;
+  }
+  .el-menu-header-right>.el-submenu .el-submenu__title,.el-menu-header-right>.el-menu-item{
+    height: 50px!important;
+    line-height: 50px!important;
+    border-left: 0;
+    border-right: 0;
   }
   .el-menu-header{
+    float: left;
+    margin-left: 50px;
+  }
+  .el-menu-header-right{
     float: right;
   }
   .header {
@@ -139,6 +160,7 @@
     }
     .h-left{
       float: left;
+      width: 230px;
     }
     .h-right {
       float: right;

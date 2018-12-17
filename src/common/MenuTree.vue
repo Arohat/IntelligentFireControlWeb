@@ -1,14 +1,14 @@
 <template>
     <div>
         <template v-for="value in this.menuData">
-            <el-submenu :index="value.navigateUrl" v-if="value.children.length>0">
+            <el-submenu :index="value.sortIndex" v-if="value.children.length>0" :route="value.navigateUrl">
                 <template slot="title">
                     <i :class="value.imageUrl"></i>
                     <span slot="title">{{value.name}}</span>
                 </template>
                 <MenuTree :menuData="value.children"></MenuTree>
             </el-submenu>
-            <el-menu-item :index="value.navigateUrl" v-else>
+            <el-menu-item :index="value.sortIndex+'-'+value.sortIndex" :route="value.navigateUrl" v-else>
                 <i :class="value.imageUrl"></i>
                 <span slot="title">{{value.name}}</span>
             </el-menu-item>
