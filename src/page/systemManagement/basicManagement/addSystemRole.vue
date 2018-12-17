@@ -1,10 +1,8 @@
 <template>
     <el-form class="container-form" :rules="rules" ref="form" :model="form" label-width="80px">
-    	<el-form-item label="id">
-            <el-input v-model="form.id"></el-input>
-        </el-form-item>
         <el-form-item label="选择类型">
-            <el-select v-model="form.roleType" :placeholder=roleTypeName>
+            <el-select v-model="form.roleType" placeholder="请选择活动区域">
+                <el-option label="请选择" value=""></el-option>
                 <el-option
 	            v-for="item in developments"
 	            :key="item.type"
@@ -12,9 +10,10 @@
 	            :value="item.type">
 	          </el-option>
             </el-select>
-        </el-form-item>        
+        </el-form-item>
+        
         <el-form-item label="输入名称">
-            <el-input v-model="form.name"></el-input>
+            <el-input v-model="form.roleName"></el-input>
         </el-form-item>
         <el-form-item>
             <el-button type="success" round @click="onSubmit">保存</el-button>
@@ -28,40 +27,26 @@
     export default {
         data() {
             return {
-            	roleTypeName:'text',
                 form: {
-                    id:0,
+                    
                     roleType: '',
-                    name :'',
+                    roleName :'',
                 },
                 developments:[],
                 rules: {
-                 roleType: [
+		          roleType: [
 		            { required: true, message: '选择类型', trigger: 'blur' }
 		          ],
-		         name: [
+		         roleName: [
 		            { required: true, message: '请输入角色名', trigger: 'blur' }
-		         ]
+		          ]
 		        },
             }
         },
-        created:function(){
-        	this.getParams();
+        created(){
       		this.onQueryRoleType();
     	},
-    	watch: {
-		  // 监测路由变化,只要变化了就调用获取路由参数方法将数据存储本组件即可
-		  '$route': 'getParams'
-		},
         methods: {
-        	getParams(){
-        		var　row = this.$route.query.row;
-        		console.log(row);
-        		let  typeName = row.typename;
-        		this.roleTypeName = typeName;
-        		this.form = row;
-        		
-        	},
         	/**
         	 * 查询角色类型
         	 */
@@ -70,26 +55,20 @@
 		        	
 		        })
 		          .then(data => {
+		            console.log(data);
 		           this.developments = data;
 		          }).catch(()=>{
 		          console.log("**********失败");
 		        });
 		      },
-		      /**
-		       *返回
-		       */
         	onSkip(){
      		 this.$router.push({path: '/systemRole'});
      		},
-     		/**
-     		 * 提交修改数据
-     		 */
             onSubmit() {
-            	console.log('**************');
-                let datas = this.form;
-                this.$http2.post(api.updateSystemRole, {
-                	'id' : this.form.id,
-		        	'name' :this.form.name,
+                let query = this.form;
+                console.log(query);
+                this.$http2.post(api.addSystemRole, {
+		        	'name' :this.form.roleName,
 		        	'type': this.form.roleType
 		        })
 		          .then(data => {
@@ -107,13 +86,7 @@
 		          }).catch(()=>{
 		          console.log("**********失败");
 		        });
-            },
-            handlebeforeupload(file,fileList){
-                this.form.fileList = fileList
-            },
-            handleRemove(file, fileList) {
-                this.form.fileList = fileList
-            },
+            }
         }
     }
 </script>

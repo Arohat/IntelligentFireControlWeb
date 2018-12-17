@@ -3,33 +3,32 @@
     <div class="layout-header">
       <Header></Header>
     </div>
-    <!-- <div class="layout-container">
+    <div class="layout-container">
       <div class="layout-left">
         <SideBar></SideBar>
-      </div> -->
-     <!-- <div class="layout-right">
+      </div>
+      <div class="layout-right">
         <Container>
           <router-view></router-view>
         </Container>
-      </div> -->
-			<div>这是系统巡检。。。。。。。。。。。。。。。。。。。。。。。。</div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import Header from "../common/Header";
-/* import SideBar from "../common/SideBar";
-import Container from "../common/Container"; */
+import SideBar from "../common/SideBar";
+import Container from "../common/Container";
 export default {
   name: "CloudHome",
   data() {
     return {};
   },
   components: {
-    Header/* ,
+    Header,
     SideBar,
-    Container */
+    Container
   }
 };
 </script>
