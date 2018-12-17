@@ -11,7 +11,8 @@ const informationAdded = r => require.ensure([], () => r(require('@/components/i
 const department = r => require.ensure([], () => r(require('@/components/department')), 'department');
 const systemPermissions = r => require.ensure([], () => r(require('@/page/systemManagement/basicManagement/systemPermissions')), 'systemPermissions');
 const systemPermissionsAdd = r => require.ensure([], () => r(require('@/page/systemManagement/basicManagement/systemPermissionsAdd')), 'systemPermissionsAdd');
-
+const systemMenu = r => require.ensure([], () => r(require('@/page/systemManagement/basicManagement/systemMenu')), 'systemMenu');
+const systemMenuAdd = r => require.ensure([], () => r(require('@/page/systemManagement/basicManagement/systemMenuAdd')), 'systemMenuAdd');
 export default new Router({
   routes: [
     {
@@ -86,7 +87,17 @@ export default new Router({
 		              component: department,
 		              meta: [{title: '用户管理', path: '/department'}, {title: '用户管理', path: '/department'}],
 		          },
-		
+							
+									{
+                    path: '/systemMenu',
+                    component: systemMenu,
+                    meta: [{title: '系统菜单', path: '/systemMenu'}, {title: '系统菜单', path: '/systemMenu' }],
+                },
+                {
+                    path: '/systemMenuAdd',
+                    component: systemMenuAdd,
+                    meta: [{title: '系统菜单', path: '/systemMenuAdd'}, { title: '系统菜单', path: '/systemMenuAdd'}]
+		            }
 		      ]
 		    },
     {
