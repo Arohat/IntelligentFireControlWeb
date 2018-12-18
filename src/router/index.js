@@ -25,6 +25,20 @@ const departmentTree = r => require.ensure([], () => r(require('@/page/systemMan
 const departmentAdd = r => require.ensure([], () => r(require('@/page/systemManagement/department/departmentAdd')), 'departmentAdd');
 //部门编辑
 const departmentEdit = r => require.ensure([], () => r(require('@/page/systemManagement/department/departmentEdit')), 'departmentEdit');
+
+
+//系统角色
+const systemRole = r => require.ensure([], () => r(require('@/page/systemManagement/basicManagement/systemRole')), 'systemRole');
+//增加系统角色
+const systemRoleAdd = r => require.ensure([], () => r(require('@/page/systemManagement/basicManagement/systemRoleAdd')), 'systemRoleAdd');
+//修改系统角色
+const systemRoleUpdate = r => require.ensure([], () => r(require('@/page/systemManagement/basicManagement/systemRoleUpdate')), 'systemRoleUpdate');
+//查询接口用户
+const announcements = r => require.ensure([], () => r(require('@/page/systemManagement/userManagement/announcements')), 'announcements');
+//修改接口用户
+const announcementsUpdate = r => require.ensure([], () => r(require('@/page/systemManagement/userManagement/announcementsUpdate')), 'announcementsUpdate');
+//增加接口用户
+const announcementsAdd = r => require.ensure([], () => r(require('@/page/systemManagement/userManagement/announcementsAdd')), 'announcementsAdd');
 export default new Router({
 	routes: [{
 			path: '/',
@@ -166,8 +180,75 @@ export default new Router({
 		            }
 
 					],
+				},
+				{
+					path: '/systemRole',
+					component: systemRole,
+					meta: [{
+						title: '基础管理',
+						path: '/systemRole'
+					}, {
+						title: '系统角色',
+						path: '/systemRole'
+					}],
+				}, 
+				{
+					path: '/systemRoleAdd',
+					component: systemRoleAdd,
+					meta: [{
+						title: '系统角色',
+						path: '/systemRoleAdd'
+					}, {
+						title: '添加角色',
+						path: '/systemRoleAdd'
+					}],
+				}, 
+				{
+					path: '/systemRoleUpdate',
+					component: systemRoleUpdate,
+					meta: [{
+						title: '系统角色',
+						path: '/systemRoleUpdate'
+					}, {
+						title: '修改系统角色',
+						path: '/systemRoleUpdate'
+					}],
+				}, 
+				{
+					path: '/announcements',
+					component: announcements,
+					meta: [{
+						title: '基础信息',
+						path: '/announcements'
+					}, {
+						title: '接口用户',
+						path: '/announcements'
+					}],
+				},
+				{
+					path: '/announcementsAdd',
+					component: announcementsAdd,
+					meta: [{
+						title: '基础信息',
+						path: '/announcementsAdd'
+					}, {
+						title: '添加接口用户',
+						path: '/announcementsAdd'
+					}],
+				},
+				{
+					path: '/announcementsUpadate',
+					component: announcementsUpadate,
+					meta: [{
+						title: '基础信息',
+						path: '/announcementsUpadate'
+					}, {
+						title: '修改接口用户',
+						path: '/announcementsUpadate'
+					}],
 				}
 			]
-		}
+		},
+		
 	]
 })

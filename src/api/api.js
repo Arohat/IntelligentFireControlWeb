@@ -11,6 +11,8 @@ const api={
     'querySystemRoleType':'/basic/role/queryRoleType',
     //添加系统角色
     'addSystemRole' : '/basic/role/add',
+    //查询接口用户
+    'searchPage' : '/basic/interfaceAccount/searchPage',
 
     'findMenuByUser':'/sys/findMenuByUser',
     'findMenuByUserAndParentId':'/sys/menu/findMenuByUserAndParentId',

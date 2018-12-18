@@ -1,7 +1,7 @@
 import axios from 'axios'
 import qs from 'qs'
 import {Message, Loading} from 'element-ui'
-const baseURL ='http://192.168.0.111:8081/ifc';
+const baseURL ='http://localhost:8081/ifc';
 const http = axios.create({
   baseURL
 });
@@ -16,7 +16,7 @@ http.interceptors.request.use(config => {
 }, error => {
   loadinginstace.close();
   Message.error({
-    message: 'º”‘ÿ≥¨ ±'
+    message: 'Âä†ËΩΩË∂ÖÊó∂'
   });
   return Promise.reject(error)
 });
@@ -33,7 +33,7 @@ http.interceptors.response.use(data => {
   console.log("data","data")
   loadinginstace.close();
   Message.error({
-    message: 'º”‘ÿ ß∞‹'
+    message: 'Âä†ËΩΩÂ§±Ë¥•'
   });
   return Promise.reject(error)
 });
